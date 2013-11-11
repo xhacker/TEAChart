@@ -11,5 +11,7 @@
 
 #import "TEABarChart.h"
 #import "TEAContributionGraph.h"
+#import "TEAClockChart.h"
+#import "TEATimeRange.h"
 
 #endif

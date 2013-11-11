@@ -23,6 +23,8 @@
 		1A1149A018311D120015BDE2 /* TEAChartDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A11499F18311D120015BDE2 /* TEAChartDemoTests.m */; };
 		1A1149AB18311DA10015BDE2 /* TEABarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1149AA18311DA10015BDE2 /* TEABarChart.m */; };
 		1A1149B018312D610015BDE2 /* TEAContributionGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1149AF18312D610015BDE2 /* TEAContributionGraph.m */; };
+		1A1149B3183134F40015BDE2 /* TEAClockChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1149B2183134F40015BDE2 /* TEAClockChart.m */; };
+		1A1149B618313ABB0015BDE2 /* TEATimeRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1149B518313ABB0015BDE2 /* TEATimeRange.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,10 @@
 		1A1149AD183121CF0015BDE2 /* TEAChart.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TEAChart.h; path = TEAChart/TEAChart.h; sourceTree = "<group>"; };
 		1A1149AE18312D610015BDE2 /* TEAContributionGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TEAContributionGraph.h; path = TEAChart/TEAContributionGraph.h; sourceTree = "<group>"; };
 		1A1149AF18312D610015BDE2 /* TEAContributionGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TEAContributionGraph.m; path = TEAChart/TEAContributionGraph.m; sourceTree = "<group>"; };
+		1A1149B1183134F40015BDE2 /* TEAClockChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TEAClockChart.h; path = TEAChart/TEAClockChart.h; sourceTree = "<group>"; };
+		1A1149B2183134F40015BDE2 /* TEAClockChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TEAClockChart.m; path = TEAChart/TEAClockChart.m; sourceTree = "<group>"; };
+		1A1149B418313ABB0015BDE2 /* TEATimeRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TEATimeRange.h; path = TEAChart/TEATimeRange.h; sourceTree = "<group>"; };
+		1A1149B518313ABB0015BDE2 /* TEATimeRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TEATimeRange.m; path = TEAChart/TEATimeRange.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +174,10 @@
 				1A1149AA18311DA10015BDE2 /* TEABarChart.m */,
 				1A1149AE18312D610015BDE2 /* TEAContributionGraph.h */,
 				1A1149AF18312D610015BDE2 /* TEAContributionGraph.m */,
+				1A1149B1183134F40015BDE2 /* TEAClockChart.h */,
+				1A1149B2183134F40015BDE2 /* TEAClockChart.m */,
+				1A1149B418313ABB0015BDE2 /* TEATimeRange.h */,
+				1A1149B518313ABB0015BDE2 /* TEATimeRange.m */,
 			);
 			name = TEAChart;
 			sourceTree = "<group>";
@@ -274,6 +284,8 @@
 				1A1149AB18311DA10015BDE2 /* TEABarChart.m in Sources */,
 				1A11498118311D120015BDE2 /* main.m in Sources */,
 				1A11498518311D120015BDE2 /* TEAAppDelegate.m in Sources */,
+				1A1149B618313ABB0015BDE2 /* TEATimeRange.m in Sources */,
+				1A1149B3183134F40015BDE2 /* TEAClockChart.m in Sources */,
 				1A1149B018312D610015BDE2 /* TEAContributionGraph.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
