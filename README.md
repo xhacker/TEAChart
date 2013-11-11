@@ -41,6 +41,8 @@ self.clockChart.data = @[
 
 ![Bar Chart](http://i.imgur.com/ScJksKh.png)
 
+Just a bar chart, no label, no interacitive, no animation.
+
 ```objective-c
 #import "TEAChart.h"
 
