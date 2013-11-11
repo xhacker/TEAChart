@@ -1,25 +1,12 @@
 # TEAChart
 
-Simple and intuitive iOS chart library. **Bar chart**, **contribution graph**, and **clock chart**.
+Simple and intuitive iOS chart library. **Contribution graph**, **clock chart**, and **bar chart**.
 
 Supports Storyboard.
 
 ## Usage
 
 See the header files for complete documents.
-
-### Bar Chart
-
-![Bar Chart](http://i.imgur.com/ScJksKh.png)
-
-```objective-c
-#import "TEAChart.h"
-
-TEABarChart *barChart = [[TEABarChart alloc] initWithFrame:CGRectMake(20, 20, 100, 40)];
-barChart.data = @[@2, @7, @1, @8, @2, @8];
-[self.view addSubview:barChart];
-```
-
 
 ### Contribution Graph
 
@@ -36,14 +23,35 @@ self.contributionGraph.spacing = 6;
 self.contributionGraph.data = @[@3, @1, @4, @1, @1, @4, @1, @5, @0, @5, @6, @3, @1, @4, @1, @5, @9, @2, @6, @0, @2, @6, @3, @2, @3, @1, @4, @1, @5, @9];
 ```
 
-
 ### Clock Chart
 
-WIP
+![Clock Chart](http://i.imgur.com/dbk0a5f.png)
+
+```objective-c
+// This sample uses Storyboard
+@property (weak, nonatomic) IBOutlet TEAClockChart *clockChart;
+
+self.clockChart.data = @[
+    [TEATimeRange timeRangeWithStart:[NSDate date] end:[NSDate dateWithTimeIntervalSinceNow:3600]],
+    // ...
+];
+```
+
+### Bar Chart
+
+![Bar Chart](http://i.imgur.com/ScJksKh.png)
+
+```objective-c
+#import "TEAChart.h"
+
+TEABarChart *barChart = [[TEABarChart alloc] initWithFrame:CGRectMake(20, 20, 100, 40)];
+barChart.data = @[@2, @7, @1, @8, @2, @8];
+[self.view addSubview:barChart];
+```
 
 ## Installation
 
-WIP
+Drag **TEAChart** folder into your project, or use CocoaPods (work in progress).
 
 ## Contribution
 
@@ -51,4 +59,4 @@ Pull requests are welcome! If you want to do something big, please open an issue
 
 ## License
 
-MIT.
+MIT
