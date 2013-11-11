@@ -34,7 +34,7 @@
     
     _autoMax = YES;
     _barColor = [UIColor colorWithRed:106.0/255 green:175.0/255 blue:232.0/255 alpha:1];
-    _barSpacing = 2;
+    _barSpacing = 8;
     _backgroundColor = [UIColor colorWithWhite:0.97 alpha:1];
     _roundToPixel = YES;
 }

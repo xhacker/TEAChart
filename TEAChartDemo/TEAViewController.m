@@ -21,8 +21,14 @@
 {
     [super viewDidLoad];
     
+    // Line chart, the Storyboard way
     self.barChart.data = @[@3, @1, @4, @1, @5, @9, @2, @6, @5, @3];
     self.barChart.barSpacing = 10;
+    
+    // Line chart, the code way
+    TEABarChart *secondBarChart = [[TEABarChart alloc] initWithFrame:CGRectMake(35, 180, 100, 40)];
+    secondBarChart.data = @[@2, @7, @1, @8, @2, @8];
+    [self.view addSubview:secondBarChart];
 }
 
 @end
