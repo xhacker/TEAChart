@@ -10,5 +10,6 @@
 #define _TEAChart_
 
 #import "TEABarChart.h"
+#import "TEAContributionGraph.h"
 
 #endif

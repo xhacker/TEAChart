@@ -12,6 +12,7 @@
 @interface TEAViewController ()
 
 @property (weak, nonatomic) IBOutlet TEABarChart *barChart;
+@property (weak, nonatomic) IBOutlet TEAContributionGraph *contributionGraph;
 
 @end
 
@@ -29,6 +30,11 @@
     TEABarChart *secondBarChart = [[TEABarChart alloc] initWithFrame:CGRectMake(35, 180, 100, 40)];
     secondBarChart.data = @[@2, @7, @1, @8, @2, @8];
     [self.view addSubview:secondBarChart];
+    
+    // Contribution graph
+    self.contributionGraph.width = 12;
+    self.contributionGraph.spacing = 6;
+    self.contributionGraph.data = @[@3, @1, @4, @1, @1, @4, @1, @5, @0, @5, @6, @3, @1, @4, @1, @5, @9, @2, @6, @0, @2, @6, @3, @2, @3, @1, @4, @1, @5, @9];
 }
 
 @end
