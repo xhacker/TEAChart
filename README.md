@@ -1,6 +1,6 @@
 # TEAChart
 
-Simple and intuitive iOS chart library. Bar chart, clock chart, and contribution graph.
+Simple and intuitive iOS chart library. **Bar chart**, **contribution graph**, and **clock chart**.
 
 Supports Storyboard.
 
@@ -23,7 +23,19 @@ barChart.data = @[@2, @7, @1, @8, @2, @8];
 
 ### Contribution Graph
 
-WIP
+![Contribution Graph](http://i.imgur.com/9JsSt23.png)
+
+The contribution graph mimics the GitHub one. Currently lacks of customization options.
+
+```objective-c
+// This sample uses Storyboard
+@property (weak, nonatomic) IBOutlet TEAContributionGraph *contributionGraph;
+
+self.contributionGraph.width = 12;
+self.contributionGraph.spacing = 6;
+self.contributionGraph.data = @[@3, @1, @4, @1, @1, @4, @1, @5, @0, @5, @6, @3, @1, @4, @1, @5, @9, @2, @6, @0, @2, @6, @3, @2, @3, @1, @4, @1, @5, @9];
+```
+
 
 ### Clock Chart
 
@@ -32,6 +44,10 @@ WIP
 ## Installation
 
 WIP
+
+## Contribution
+
+Pull requests are welcome! If you want to do something big, please open an issue first.
 
 ## License
 
