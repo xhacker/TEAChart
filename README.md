@@ -53,7 +53,13 @@ barChart.data = @[@2, @7, @1, @8, @2, @8];
 
 ## Installation
 
-Drag **TEAChart** folder into your project, or use CocoaPods (work in progress).
+Use CocoaPods:
+
+```ruby
+pod 'TEAChart'
+```
+
+Or drag **TEAChart** folder into your project.
 
 ## Contribution
 
