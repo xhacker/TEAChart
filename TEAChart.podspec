@@ -3,6 +3,7 @@ Pod::Spec.new do |s|
   s.version      = "0.0.2"
   s.summary      = "Simple and intuitive iOS chart library. Contribution graph, clock chart, and bar chart."
   s.homepage     = "https://github.com/xhacker/TEAChart"
+  s.social_media_url = "https://twitter.com/xhacker"
 
   s.license      = 'MIT'
   s.author       = { "Xhacker Liu" => "liu.dongyuan@gmail.com" }
