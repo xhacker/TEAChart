@@ -9,9 +9,20 @@
 #import "TEAContributionGraph.h"
 
 static const NSInteger kDayInterval = 24 * 3600;
+static const NSInteger kDefaultGradeCount = 5;
+
+@interface TEAContributionGraph ()
+@property (nonatomic) NSUInteger gradeCount;
+@property (nonatomic, strong) NSMutableArray *gradeMinCutoff;
+@property (nonatomic, strong) NSDate *graphMonth;
+@property (nonatomic, strong) NSMutableArray *colors;
+
+
+@end
 
 @implementation TEAContributionGraph
 
+#pragma mark - View lifecycle
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -30,13 +41,68 @@ static const NSInteger kDayInterval = 24 * 3600;
     return self;
 }
 
-- (void)loadDefaults
-{
-    _colors = @[[UIColor colorWithRed:0.933 green:0.933 blue:0.933 alpha:1],
-                [UIColor colorWithRed:0.839 green:0.902 blue:0.522 alpha:1],
-                [UIColor colorWithRed:0.549 green:0.776 blue:0.396 alpha:1],
-                [UIColor colorWithRed:0.267 green:0.639 blue:0.251 alpha:1],
-                [UIColor colorWithRed:0.118 green:0.408 blue:0.137 alpha:1]];
+- (void)awakeFromNib {
+}
+
+- (void)loadDefaults {
+    //Load one-time data from the delegate
+    
+    //Get the total number of grades
+    if ([_delegate respondsToSelector:@selector(numberOfGrades)]) {
+        _gradeCount = [_delegate numberOfGrades];
+    }else {
+        _gradeCount = kDefaultGradeCount;
+    }
+    
+    //Load all of the colors from the delegate
+    if ([_delegate respondsToSelector:@selector(colorForGrade:)]) {
+        _colors = [[NSMutableArray alloc] initWithCapacity:_gradeCount];
+        for (int i = 0; i < _gradeCount; i++) {
+            [_colors addObject:[_delegate colorForGrade:i]];
+        }
+    }else {
+        //Use the defaults
+        _colors = [[NSMutableArray alloc] initWithObjects:
+                   [UIColor colorWithRed:0.933 green:0.933 blue:0.933 alpha:1],
+                   [UIColor colorWithRed:0.839 green:0.902 blue:0.522 alpha:1],
+                   [UIColor colorWithRed:0.549 green:0.776 blue:0.396 alpha:1],
+                   [UIColor colorWithRed:0.267 green:0.639 blue:0.251 alpha:1],
+                   [UIColor colorWithRed:0.118 green:0.408 blue:0.137 alpha:1], nil];
+        //Check if there is the correct number of colors
+        if (_gradeCount != kDefaultGradeCount) {
+            [[NSException exceptionWithName:@"Invalid Data" reason:@"The number of grades does not match the number of colors. Implement colorForGrade: to define a different number of colors than the default 5" userInfo:NULL] raise];
+        }
+    }
+    
+    //Get the minimum cutoff for each grade
+    if ([_delegate respondsToSelector:@selector(minimumValueForGrade:)]) {
+        _gradeMinCutoff = [[NSMutableArray alloc] initWithCapacity:_gradeCount];
+        for (int i = 0; i < _gradeCount; i++) {
+            //Convert each value to a NSNumber
+            [_gradeMinCutoff addObject:@([_delegate minimumValueForGrade:i])];
+        }
+    }else {
+        //Use the default values
+        _gradeMinCutoff = [[NSMutableArray alloc] initWithObjects:
+                           @0,
+                           @1,
+                           @3,
+                           @6,
+                           @8, nil];
+        
+        if (_gradeCount != kDefaultGradeCount) {
+            [[NSException exceptionWithName:@"Invalid Data" reason:@"The number of grades does not match the number of grade cutoffs. Implement minimumValueForGrade: to define the correct number of cutoff values" userInfo:NULL] raise];
+        }
+    }
+    
+    if ([_delegate respondsToSelector:@selector(monthForGraph)]) {
+        _graphMonth = [_delegate monthForGraph];
+    }else {
+        //Use the current month by default
+        _graphMonth = [NSDate date];
+    }
+    
+
 }
 
 - (void)drawRect:(CGRect)rect
@@ -46,7 +112,7 @@ static const NSInteger kDayInterval = 24 * 3600;
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDateComponents *comp = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:[NSDate date]];
+    NSDateComponents *comp = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:_graphMonth];
     comp.day = 1;
     NSDate *firstDay = [calendar dateFromComponents:comp];
     
@@ -68,12 +134,17 @@ static const NSInteger kDayInterval = 24 * 3600;
         NSInteger day = comp.day;
         
         NSInteger grade = 0;
-        NSInteger contributions = day <= self.data.count ? [self.data[day-1] integerValue] : 0;
-        if (contributions <= 0) grade = 0;
-        else if (contributions <= 3) grade = 1;
-        else if (contributions <= 6) grade = 2;
-        else if (contributions <= 8) grade = 3;
-        else grade = 4;
+        NSInteger contributions = 0;
+        if ([_delegate respondsToSelector:@selector(valueForDay:)]) {
+            contributions = [_delegate valueForDay:day];
+        }
+        
+        //Get the grade from the minimum cutoffs
+        for (int i = 0; i < _gradeCount; i++) {
+            if ([_gradeMinCutoff[i] integerValue] <= contributions) {
+                grade = i;
+            }
+        }
         
         [self.colors[grade] setFill];
         CGRect backgroundRect = CGRectMake((weekday - 1) * (self.width + self.spacing), (weekOfMonth - 1) * (self.width + self.spacing) + textHeight, self.width, self.width);
@@ -83,17 +154,6 @@ static const NSInteger kDayInterval = 24 * 3600;
 
 #pragma mark Setters
 
-- (void)setData:(NSArray *)data
-{
-    _data = data;
-    [self setNeedsDisplay];
-}
-
-- (void)setColors:(NSArray *)colors
-{
-    _colors = colors;
-    [self setNeedsDisplay];
-}
 
 - (void)setWidth:(NSInteger)width
 {

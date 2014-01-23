@@ -7,7 +7,6 @@
 //
 
 #import "TEAViewController.h"
-#import "TEAChart.h"
 
 @interface TEAViewController ()
 
@@ -35,7 +34,6 @@
     // Contribution graph
     self.contributionGraph.width = 12;
     self.contributionGraph.spacing = 6;
-    self.contributionGraph.data = @[@3, @1, @4, @1, @1, @4, @1, @5, @0, @5, @6, @3, @1, @4, @1, @5, @9, @2, @6, @0, @2, @6, @3, @2, @3, @1, @4, @1, @5, @9];
     
     // Clock chart
     self.clockChart.data = @[
@@ -43,5 +41,15 @@
         // ...
     ];
 }
+
+#pragma mark - TEAContributionGraphDataSource Methods
+- (NSDate *)monthForGraph {
+    return [NSDate date];
+}
+
+- (NSInteger)valueForDay:(NSUInteger)day {
+    return day%6;
+}
+
 
 @end

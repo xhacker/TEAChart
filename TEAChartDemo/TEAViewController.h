@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TEAChart.h"
 
-@interface TEAViewController : UIViewController
+@interface TEAViewController : UIViewController <TEAContributionGraphDataSource>
 
 @end
