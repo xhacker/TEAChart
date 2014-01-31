@@ -7,8 +7,8 @@
 //
 
 #import "TEAContributionGraph.h"
+#import "NSDate+TEAExtensions.h"
 
-static const NSInteger kDayInterval = 24 * 3600;
 static const NSInteger kDefaultGradeCount = 5;
 
 @interface TEAContributionGraph ()
@@ -114,7 +114,7 @@ static const NSInteger kDefaultGradeCount = 5;
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *comp = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:_graphMonth];
     comp.day = 1;
     NSDate *firstDay = [calendar dateFromComponents:comp];
@@ -129,7 +129,7 @@ static const NSInteger kDefaultGradeCount = 5;
         [weekdayNames[i] drawInRect:CGRectMake(i * (self.width + self.spacing), 0, self.width, self.width) withFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:self.width * 0.65] lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentCenter];
     }
     
-    for (NSDate *date = firstDay; [date compare:nextMonth] == NSOrderedAscending; date = [date dateByAddingTimeInterval:kDayInterval]) {
+    for (NSDate *date = firstDay; [date compare:nextMonth] == NSOrderedAscending; date = [date tea_nextDay]) {
         NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
         NSDateComponents *comp = [calendar components:NSCalendarUnitWeekday | NSCalendarUnitWeekOfMonth | NSCalendarUnitDay fromDate:date];
         NSInteger weekday = comp.weekday;

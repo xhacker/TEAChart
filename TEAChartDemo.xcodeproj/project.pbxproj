@@ -25,6 +25,7 @@
 		1A1149B018312D610015BDE2 /* TEAContributionGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1149AF18312D610015BDE2 /* TEAContributionGraph.m */; };
 		1A1149B3183134F40015BDE2 /* TEAClockChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1149B2183134F40015BDE2 /* TEAClockChart.m */; };
 		1A1149B618313ABB0015BDE2 /* TEATimeRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1149B518313ABB0015BDE2 /* TEATimeRange.m */; };
+		1AADE620189B990A00EB7C2C /* NSDate+TEAExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AADE61F189B990A00EB7C2C /* NSDate+TEAExtensions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,8 @@
 		1A1149B2183134F40015BDE2 /* TEAClockChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TEAClockChart.m; path = TEAChart/TEAClockChart.m; sourceTree = "<group>"; };
 		1A1149B418313ABB0015BDE2 /* TEATimeRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TEATimeRange.h; path = TEAChart/TEATimeRange.h; sourceTree = "<group>"; };
 		1A1149B518313ABB0015BDE2 /* TEATimeRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TEATimeRange.m; path = TEAChart/TEATimeRange.m; sourceTree = "<group>"; };
+		1AADE61E189B990A00EB7C2C /* NSDate+TEAExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+TEAExtensions.h"; path = "TEAChart/NSDate+TEAExtensions.h"; sourceTree = "<group>"; };
+		1AADE61F189B990A00EB7C2C /* NSDate+TEAExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+TEAExtensions.m"; path = "TEAChart/NSDate+TEAExtensions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +181,8 @@
 				1A1149B2183134F40015BDE2 /* TEAClockChart.m */,
 				1A1149B418313ABB0015BDE2 /* TEATimeRange.h */,
 				1A1149B518313ABB0015BDE2 /* TEATimeRange.m */,
+				1AADE61E189B990A00EB7C2C /* NSDate+TEAExtensions.h */,
+				1AADE61F189B990A00EB7C2C /* NSDate+TEAExtensions.m */,
 			);
 			name = TEAChart;
 			sourceTree = "<group>";
@@ -280,6 +285,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AADE620189B990A00EB7C2C /* NSDate+TEAExtensions.m in Sources */,
 				1A11498B18311D120015BDE2 /* TEAViewController.m in Sources */,
 				1A1149AB18311DA10015BDE2 /* TEABarChart.m in Sources */,
 				1A11498118311D120015BDE2 /* main.m in Sources */,
