@@ -15,26 +15,26 @@ See the header files for complete documents.
 The contribution graph mimics the GitHub one. You can implement the TEAContributionGraphDataSource to customize the style of the graph. 
 The methods required to customize it are:
 ```objective-c
-//The DataSource should return an NSDate that occurs inside the month to graph
+// The DataSource should return an NSDate that occurs inside the month to graph
 - (NSDate *)monthForGraph;
 
-//The day variable is an integer from 1 to the last day of the month given by monthForGraph
-//Return the value to graph for each calendar day or 0.
+// The day variable is an integer from 1 to the last day of the month given by monthForGraph
+// Return the value to graph for each calendar day or 0.
 - (NSInteger)valueForDay:(NSUInteger)day;
 ```
 There are currently three more DataSource methods to customize the coloring of the graph. 
 Each grade is represented by a different color.
 ```objective-c
-//Defines the number of distinct colors in the graph
+// Defines the number of distinct colors in the graph
 - (NSUInteger)numberOfGrades;
 
-//Defines what color should be used by each grade.
+// Defines what color should be used by each grade.
 - (UIColor *)colorForGrade:(NSUInteger)grade;
 
-//Defines the cutoff values used for translating values into grades.
-//For example, you may want different grades for the values grade==0, 1 <= grade < 5, 5 <= grade.
-//This means there are three grades total
-//The minimumValue for the first grade is 0, the minimum for the second grade is 1, and the minimum for the third grade is 5
+// Defines the cutoff values used for translating values into grades.
+// For example, you may want different grades for the values grade==0, 1 <= grade < 5, 5 <= grade.
+// This means there are three grades total
+// The minimumValue for the first grade is 0, the minimum for the second grade is 1, and the minimum for the third grade is 5
 - (NSInteger)minimumValueForGrade:(NSUInteger)grade;
 ```
 
@@ -49,14 +49,16 @@ self.contributionGraph.width = 12;
 self.contributionGraph.spacing = 6;
 
 #pragma mark - TEAContributionGraphDataSource Methods
-- (NSDate *)monthForGraph {
-	//Graph the current month
+- (NSDate *)monthForGraph
+{
+	// Graph the current month
     return [NSDate date];
 }
 
-- (NSInteger)valueForDay:(NSUInteger)day {
-	//Return 0-5
-    return day%6;
+- (NSInteger)valueForDay:(NSUInteger)day
+{
+	// Return 0-5
+    return day % 6;
 }
 ```
 

@@ -12,17 +12,18 @@ static const NSInteger kDayInterval = 24 * 3600;
 static const NSInteger kDefaultGradeCount = 5;
 
 @interface TEAContributionGraph ()
+
 @property (nonatomic) NSUInteger gradeCount;
 @property (nonatomic, strong) NSMutableArray *gradeMinCutoff;
 @property (nonatomic, strong) NSDate *graphMonth;
 @property (nonatomic, strong) NSMutableArray *colors;
-
 
 @end
 
 @implementation TEAContributionGraph
 
 #pragma mark - View lifecycle
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -41,48 +42,49 @@ static const NSInteger kDefaultGradeCount = 5;
     return self;
 }
 
-- (void)awakeFromNib {
-}
-
-- (void)loadDefaults {
-    //Load one-time data from the delegate
+- (void)loadDefaults
+{
+    // Load one-time data from the delegate
     
-    //Get the total number of grades
+    // Get the total number of grades
     if ([_delegate respondsToSelector:@selector(numberOfGrades)]) {
         _gradeCount = [_delegate numberOfGrades];
-    }else {
+    }
+    else {
         _gradeCount = kDefaultGradeCount;
     }
     
-    //Load all of the colors from the delegate
+    // Load all of the colors from the delegate
     if ([_delegate respondsToSelector:@selector(colorForGrade:)]) {
         _colors = [[NSMutableArray alloc] initWithCapacity:_gradeCount];
         for (int i = 0; i < _gradeCount; i++) {
             [_colors addObject:[_delegate colorForGrade:i]];
         }
-    }else {
-        //Use the defaults
+    }
+    else {
+        // Use the defaults
         _colors = [[NSMutableArray alloc] initWithObjects:
                    [UIColor colorWithRed:0.933 green:0.933 blue:0.933 alpha:1],
                    [UIColor colorWithRed:0.839 green:0.902 blue:0.522 alpha:1],
                    [UIColor colorWithRed:0.549 green:0.776 blue:0.396 alpha:1],
                    [UIColor colorWithRed:0.267 green:0.639 blue:0.251 alpha:1],
                    [UIColor colorWithRed:0.118 green:0.408 blue:0.137 alpha:1], nil];
-        //Check if there is the correct number of colors
+        // Check if there is the correct number of colors
         if (_gradeCount != kDefaultGradeCount) {
             [[NSException exceptionWithName:@"Invalid Data" reason:@"The number of grades does not match the number of colors. Implement colorForGrade: to define a different number of colors than the default 5" userInfo:NULL] raise];
         }
     }
     
-    //Get the minimum cutoff for each grade
+    // Get the minimum cutoff for each grade
     if ([_delegate respondsToSelector:@selector(minimumValueForGrade:)]) {
         _gradeMinCutoff = [[NSMutableArray alloc] initWithCapacity:_gradeCount];
         for (int i = 0; i < _gradeCount; i++) {
-            //Convert each value to a NSNumber
+            // Convert each value to a NSNumber
             [_gradeMinCutoff addObject:@([_delegate minimumValueForGrade:i])];
         }
-    }else {
-        //Use the default values
+    }
+    else {
+        // Use the default values
         _gradeMinCutoff = [[NSMutableArray alloc] initWithObjects:
                            @0,
                            @1,
@@ -97,8 +99,9 @@ static const NSInteger kDefaultGradeCount = 5;
     
     if ([_delegate respondsToSelector:@selector(monthForGraph)]) {
         _graphMonth = [_delegate monthForGraph];
-    }else {
-        //Use the current month by default
+    }
+    else {
+        // Use the current month by default
         _graphMonth = [NSDate date];
     }
     
@@ -139,7 +142,7 @@ static const NSInteger kDefaultGradeCount = 5;
             contributions = [_delegate valueForDay:day];
         }
         
-        //Get the grade from the minimum cutoffs
+        // Get the grade from the minimum cutoffs
         for (int i = 0; i < _gradeCount; i++) {
             if ([_gradeMinCutoff[i] integerValue] <= contributions) {
                 grade = i;
@@ -153,7 +156,6 @@ static const NSInteger kDefaultGradeCount = 5;
 }
 
 #pragma mark Setters
-
 
 - (void)setWidth:(NSInteger)width
 {

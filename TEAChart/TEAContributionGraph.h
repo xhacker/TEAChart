@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #pragma mark - TEAContributionGraphDelegate
+
 @protocol TEAContributionGraphDataSource <NSObject>
 
 @required
@@ -59,6 +60,6 @@
 @property (nonatomic) NSInteger width;
 @property (nonatomic) NSInteger spacing;
 
-@property (nonatomic, weak) IBOutlet id<TEAContributionGraphDataSource> delegate;
+@property (nonatomic, weak) id<TEAContributionGraphDataSource> delegate;
 
 @end

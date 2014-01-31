@@ -43,13 +43,15 @@
 }
 
 #pragma mark - TEAContributionGraphDataSource Methods
-- (NSDate *)monthForGraph {
+
+- (NSDate *)monthForGraph
+{
     return [NSDate date];
 }
 
-- (NSInteger)valueForDay:(NSUInteger)day {
-    return day%6;
+- (NSInteger)valueForDay:(NSUInteger)day
+{
+    return day % 6;
 }
-
 
 @end
