@@ -49,6 +49,7 @@
     CGFloat barMaxHeight = CGRectGetHeight(rect);
     NSInteger numberOfBars = self.data.count;
     CGFloat barWidth = (CGRectGetWidth(rect) - self.barSpacing * (numberOfBars - 1)) / numberOfBars;
+    CGFloat barWidthRounded = ceil(barWidth);
     
     for (NSInteger i = 0; i < numberOfBars; i += 1) {
         CGFloat barHeight = barMaxHeight * [self.data[i] floatValue] / max;
@@ -59,12 +60,14 @@
             barHeight = (int)barHeight;
         }
         
+        CGFloat x = floor(i * (barWidth + self.barSpacing));
+        
         [self.backgroundColor setFill];
-        CGRect backgroundRect = CGRectMake(i * (barWidth + self.barSpacing), 0, barWidth, barMaxHeight);
+        CGRect backgroundRect = CGRectMake(x, 0, barWidthRounded, barMaxHeight);
         CGContextFillRect(context, backgroundRect);
         
         [self.barColor setFill];
-        CGRect barRect = CGRectMake(i * (barWidth + self.barSpacing), barMaxHeight - barHeight, barWidth, barHeight);
+        CGRect barRect = CGRectMake(x, barMaxHeight - barHeight, barWidthRounded, barHeight);
         CGContextFillRect(context, barRect);
     }
 }
