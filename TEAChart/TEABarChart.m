@@ -34,6 +34,7 @@
     
     _autoMax = YES;
     _barColor = [UIColor colorWithRed:106.0/255 green:175.0/255 blue:232.0/255 alpha:1];
+    _barColors = @[_barColor];
     _barSpacing = 8;
     _backgroundColor = [UIColor colorWithWhite:0.97 alpha:1];
     _roundToPixel = YES;
@@ -61,11 +62,13 @@
         }
         
         CGFloat x = floor(i * (barWidth + self.barSpacing));
-        
+      
+      
         [self.backgroundColor setFill];
         CGRect backgroundRect = CGRectMake(x, 0, barWidthRounded, barMaxHeight);
         CGContextFillRect(context, backgroundRect);
-        
+      
+        [self setBarColor:[_barColors objectAtIndex:(i%_barColors.count)]];
         [self.barColor setFill];
         CGRect barRect = CGRectMake(x, barMaxHeight - barHeight, barWidthRounded, barHeight);
         CGContextFillRect(context, barRect);
@@ -91,7 +94,10 @@
     _autoMax = autoMax;
     [self setNeedsDisplay];
 }
-
+- (void)setBarColors:(NSArray *)barColors {
+    _barColors = barColors;
+    [self setNeedsDisplay];
+}
 - (void)setBarColor:(UIColor *)barColor
 {
     _barColor = barColor;
