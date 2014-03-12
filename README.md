@@ -12,7 +12,7 @@ See the header files for complete documents.
 
 ![Contribution Graph](http://i.imgur.com/9JsSt23.png)
 
-The contribution graph mimics the GitHub one. You can implement the TEAContributionGraphDataSource to customize the style of the graph. 
+The contribution graph mimics the GitHub one. You can implement the TEAContributionGraphDataSource to customize the style of the graph.
 The methods required to customize it are:
 ```objective-c
 // The DataSource should return an NSDate that occurs inside the month to graph
@@ -22,7 +22,7 @@ The methods required to customize it are:
 // Return the value to graph for each calendar day or 0.
 - (NSInteger)valueForDay:(NSUInteger)day;
 ```
-There are currently three more DataSource methods to customize the coloring of the graph. 
+There are currently three more DataSource methods to customize the coloring of the graph.
 Each grade is represented by a different color.
 ```objective-c
 // Defines the number of distinct colors in the graph
@@ -86,6 +86,19 @@ Just a bar chart, no label, no interaction, no animation.
 #import "TEAChart.h"
 
 TEABarChart *barChart = [[TEABarChart alloc] initWithFrame:CGRectMake(20, 20, 100, 40)];
+barChart.data = @[@2, @7, @1, @8, @2, @8];
+[self.view addSubview:barChart];
+```
+
+![Colored Bar Chart](http://i.imgur.com/evxPmxb.jpg)
+
+To add colors to the bar chart, add an array of colors
+
+```objective-c
+#import "TEAChart.h"
+
+TEABarChart *barChart = [[TEABarChart alloc] initWithFrame:CGRectMake(20, 20, 100, 40)];
+barChart.barColors = @[[UIColor orangeColor], [UIColor yellowColor], [UIColor greenColor], [UIColor blueColor]];
 barChart.data = @[@2, @7, @1, @8, @2, @8];
 [self.view addSubview:barChart];
 ```

@@ -20,6 +20,7 @@
 @property (nonatomic) BOOL autoMax;
 
 @property (nonatomic) UIColor *barColor;
+@property (nonatomic) NSArray *barColors;
 @property (nonatomic) NSInteger barSpacing;
 @property (nonatomic) UIColor *backgroundColor;
 
