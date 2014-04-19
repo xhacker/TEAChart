@@ -68,9 +68,9 @@
     }];
     
     // draw ring
-    CGContextSetLineWidth(context, 2);
+    CGContextSetLineWidth(context, 1);
     [self.strokeColor setStroke];
-    CGFloat margin = 0.1;
+    CGFloat margin = 0.08;
     CGContextAddEllipseInRect(context, CGRectMake(originX - radius * (1 - margin), originY - radius * (1 - margin), 2 * (1 - margin) * radius, 2 * (1 - margin) * radius));
     CGContextStrokePath(context);
     
