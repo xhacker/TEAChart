@@ -31,7 +31,9 @@
 - (void)loadDefaults
 {
     self.opaque = NO;
-    
+
+    _xLabels = nil;
+
     _autoMax = YES;
 
     _barColor = [UIColor colorWithRed:106.0/255 green:175.0/255 blue:232.0/255 alpha:1];
@@ -51,10 +53,28 @@
     NSInteger numberOfBars = self.data.count;
     CGFloat barWidth = (CGRectGetWidth(rect) - self.barSpacing * (numberOfBars - 1)) / numberOfBars;
     CGFloat barWidthRounded = ceil(barWidth);
-    
+
+    if (self.xLabels) {
+        CGFloat fontSize = floor(barWidth);
+        CGFloat labelsTopMargin = ceil(fontSize * 0.33);
+        barMaxHeight -= (fontSize + labelsTopMargin);
+
+        [self.xLabels enumerateObjectsUsingBlock:^(NSString *label, NSUInteger idx, BOOL *stop) {
+            NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init] ;
+            paragraphStyle.alignment = NSTextAlignmentCenter;
+
+            [label drawInRect:CGRectMake(idx * (barWidth + self.barSpacing), barMaxHeight + labelsTopMargin, barWidth, barWidth)
+               withAttributes:@{
+                                NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue" size:fontSize],
+                                NSForegroundColorAttributeName:[UIColor colorWithWhite:0.56 alpha:1],
+                                NSParagraphStyleAttributeName:paragraphStyle,
+                                }];
+        }];
+    }
+
     for (NSInteger i = 0; i < numberOfBars; i += 1)
     {
-        CGFloat barHeight = barMaxHeight * [self.data[i] floatValue] / max;
+        CGFloat barHeight = (max == 0 ? 0 : barMaxHeight * [self.data[i] floatValue] / max);
         if (barHeight > barMaxHeight) {
             barHeight = barMaxHeight;
         }
@@ -80,6 +100,12 @@
 - (void)setData:(NSArray *)data
 {
     _data = data;
+    [self setNeedsDisplay];
+}
+
+- (void)setXLabels:(NSArray *)xLabels
+{
+    _xLabels = xLabels;
     [self setNeedsDisplay];
 }
 

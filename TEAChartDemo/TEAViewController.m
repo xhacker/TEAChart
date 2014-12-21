@@ -22,14 +22,15 @@
 {
     [super viewDidLoad];
     
-    // Line chart, the Storyboard way
+    // Bar chart, the Storyboard way
     self.barChart.data = @[@3, @1, @4, @1, @5, @9, @2, @6, @5, @3];
     self.barChart.barSpacing = 10;
     self.barChart.barColors = @[[UIColor orangeColor], [UIColor yellowColor], [UIColor greenColor], [UIColor blueColor]];
   
-    // Line chart, the code way
-    TEABarChart *secondBarChart = [[TEABarChart alloc] initWithFrame:CGRectMake(35, 180, 100, 40)];
+    // Bar chart, the code way
+    TEABarChart *secondBarChart = [[TEABarChart alloc] initWithFrame:CGRectMake(35, 180, 100, 56)];
     secondBarChart.data = @[@2, @7, @1, @8, @2, @8];
+    secondBarChart.xLabels = @[@"A", @"B", @"C", @"D", @"E", @"F"];
     [self.view addSubview:secondBarChart];
     
     // Contribution graph
