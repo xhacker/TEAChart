@@ -74,7 +74,7 @@
 
     for (NSInteger i = 0; i < numberOfBars; i += 1)
     {
-        CGFloat barHeight = barMaxHeight * [self.data[i] floatValue] / max;
+        CGFloat barHeight = (max == 0 ? 0 : barMaxHeight * [self.data[i] floatValue] / max);
         if (barHeight > barMaxHeight) {
             barHeight = barMaxHeight;
         }
