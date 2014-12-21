@@ -13,6 +13,9 @@
 // Array of NSNumber
 @property (nonatomic) NSArray *data;
 
+// Array of NSString, nil if you don't want labels.
+@property (nonatomic) NSArray *xLabels;
+
 // Max y value for chart (only works when autoMax is NO)
 @property (nonatomic) CGFloat max;
 
