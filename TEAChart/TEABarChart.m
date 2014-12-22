@@ -63,7 +63,7 @@
             NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init] ;
             paragraphStyle.alignment = NSTextAlignmentCenter;
 
-            [label drawInRect:CGRectMake(idx * (barWidth + self.barSpacing), barMaxHeight + labelsTopMargin, barWidth, barWidth)
+            [label drawInRect:CGRectMake(idx * (barWidth + self.barSpacing), barMaxHeight + labelsTopMargin, barWidth, fontSize * 1.2)
                withAttributes:@{
                                 NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue" size:fontSize],
                                 NSForegroundColorAttributeName:[UIColor colorWithWhite:0.56 alpha:1],

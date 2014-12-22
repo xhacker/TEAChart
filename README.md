@@ -84,7 +84,7 @@ self.clockChart.data = @[
 
 ![Bar Chart](http://i.imgur.com/ScJksKh.png)
 
-Just a bar chart, no label, no interaction, no animation.
+Just a bar chart, no interaction, no animation.
 
 ```objective-c
 #import "TEAChart.h"
@@ -105,6 +105,12 @@ TEABarChart *barChart = [[TEABarChart alloc] initWithFrame:CGRectMake(20, 20, 10
 barChart.barColors = @[[UIColor orangeColor], [UIColor yellowColor], [UIColor greenColor], [UIColor blueColor]];
 barChart.data = @[@2, @7, @1, @8, @2, @8];
 [self.view addSubview:barChart];
+```
+
+To add x-labels to the bar chart, set ``xLabels`` property. Should be just one character per label since the bars are narrow.
+
+```objective-c
+barChart.xLabels = @[@"A", @"B", @"C", @"D", @"E", @"F"];
 ```
 
 ## Installation
