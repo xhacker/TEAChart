@@ -57,8 +57,10 @@
 
 #pragma mark - Properties
 
-@property (nonatomic) NSInteger width;
-@property (nonatomic) NSInteger spacing;
+@property (nonatomic) CGFloat width;
+@property (nonatomic) CGFloat spacing;
+@property (nonatomic) BOOL showDayNumbers;
+@property (nonatomic) BOOL widthFromViewSize;
 
 @property (nonatomic, weak) id<TEAContributionGraphDataSource> delegate;
 

@@ -104,13 +104,14 @@ static const NSInteger kDefaultGradeCount = 5;
         // Use the current month by default
         _graphMonth = [NSDate date];
     }
-    
-
 }
 
 - (void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
+    
+    // Calculate the size of the cells from the view's frame
+    CGFloat cellSize = (self.widthFromViewSize ? ((MIN(self.frame.size.width, self.frame.size.height) - (self.spacing * 6)) / 7) : self.width);
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
@@ -123,14 +124,19 @@ static const NSInteger kDefaultGradeCount = 5;
     NSDate *nextMonth = [calendar dateFromComponents:comp];
     
     NSArray *weekdayNames = @[@"S", @"M", @"T", @"W", @"T", @"F", @"S"];
+    
+    NSMutableParagraphStyle* paragraphStyle = [NSMutableParagraphStyle new];
+    paragraphStyle.alignment = NSTextAlignmentLeft;
+    NSDictionary* textAttributes = @{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:cellSize * 0.4], NSParagraphStyleAttributeName: paragraphStyle};
+    
     [[UIColor colorWithWhite:0.56 alpha:1] setFill];
-    NSInteger textHeight = self.width * 1.2;
+    NSInteger textHeight = cellSize * 1.2;
     for (NSInteger i = 0; i < 7; i += 1) {
-        [weekdayNames[i] drawInRect:CGRectMake(i * (self.width + self.spacing), 0, self.width, self.width) withFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:self.width * 0.65] lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentCenter];
+        [weekdayNames[i] drawInRect:CGRectMake(i * (cellSize + self.spacing), 0, cellSize, cellSize) withFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:cellSize * 0.65] lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentCenter];
     }
     
     for (NSDate *date = firstDay; [date compare:nextMonth] == NSOrderedAscending; date = [date tea_nextDay]) {
-        NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
         NSDateComponents *comp = [calendar components:NSCalendarUnitWeekday | NSCalendarUnitWeekOfMonth | NSCalendarUnitDay fromDate:date];
         NSInteger weekday = comp.weekday;
         NSInteger weekOfMonth = comp.weekOfMonth;
@@ -150,20 +156,25 @@ static const NSInteger kDefaultGradeCount = 5;
         }
         
         [self.colors[grade] setFill];
-        CGRect backgroundRect = CGRectMake((weekday - 1) * (self.width + self.spacing), (weekOfMonth - 1) * (self.width + self.spacing) + textHeight, self.width, self.width);
+        CGRect backgroundRect = CGRectMake((weekday - 1) * (cellSize + self.spacing), (weekOfMonth - 1) * (cellSize + self.spacing) + textHeight, cellSize, cellSize);
         CGContextFillRect(context, backgroundRect);
+        
+        if (self.showDayNumbers) {
+            NSString *string = [NSString stringWithFormat:@"%ld", (long)day];
+            [string drawInRect:backgroundRect withAttributes:textAttributes];
+        }
     }
 }
 
 #pragma mark Setters
 
-- (void)setWidth:(NSInteger)width
+- (void)setWidth:(CGFloat)width
 {
     _width = width;
     [self setNeedsDisplay];
 }
 
-- (void)setSpacing:(NSInteger)spacing
+- (void)setSpacing:(CGFloat)spacing
 {
     _spacing = spacing;
     [self setNeedsDisplay];
