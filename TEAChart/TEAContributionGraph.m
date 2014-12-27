@@ -125,9 +125,13 @@ static const NSInteger kDefaultGradeCount = 5;
     
     NSArray *weekdayNames = @[@"S", @"M", @"T", @"W", @"T", @"F", @"S"];
     
-    NSMutableParagraphStyle* paragraphStyle = [NSMutableParagraphStyle new];
-    paragraphStyle.alignment = NSTextAlignmentLeft;
-    NSDictionary* textAttributes = @{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:cellSize * 0.4], NSParagraphStyleAttributeName: paragraphStyle};
+    NSDictionary* textAttributes = nil;
+    if (self.showDayNumbers)
+    {
+        NSMutableParagraphStyle* paragraphStyle = [NSMutableParagraphStyle new];
+        paragraphStyle.alignment = NSTextAlignmentLeft;
+        textAttributes = @{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:cellSize * 0.4], NSParagraphStyleAttributeName: paragraphStyle};
+    }
     
     [[UIColor colorWithWhite:0.56 alpha:1] setFill];
     NSInteger textHeight = cellSize * 1.2;
