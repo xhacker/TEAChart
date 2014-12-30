@@ -15,7 +15,6 @@ static const NSInteger kDefaultGradeCount = 5;
 
 @property (nonatomic) NSUInteger gradeCount;
 @property (nonatomic, strong) NSMutableArray *gradeMinCutoff;
-@property (nonatomic, strong) NSDate *graphMonth;
 @property (nonatomic, strong) NSMutableArray *colors;
 
 @end
@@ -182,6 +181,11 @@ static const NSInteger kDefaultGradeCount = 5;
 {
     _spacing = spacing;
     [self setNeedsDisplay];
+}
+
+- (void)setGraphMonth:(NSDate *)graphMonth
+{
+    _graphMonth = graphMonth;
 }
 
 @end
