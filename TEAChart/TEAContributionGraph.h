@@ -57,9 +57,12 @@
 
 #pragma mark - Properties
 
-@property (nonatomic) NSInteger width;
-@property (nonatomic) NSInteger spacing;
+@property (nonatomic) CGFloat width;
+@property (nonatomic) CGFloat spacing;
+@property (nonatomic, strong) NSDate *graphMonth;
+@property (nonatomic) BOOL showDayNumbers;
+@property (nonatomic) BOOL widthFromViewSize;
 
-@property (nonatomic, weak) id<TEAContributionGraphDataSource> delegate;
+@property (nonatomic, weak) IBOutlet id<TEAContributionGraphDataSource> delegate;
 
 @end
