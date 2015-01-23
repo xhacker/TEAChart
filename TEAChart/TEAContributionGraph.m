@@ -124,20 +124,20 @@ static const NSInteger kDefaultGradeCount = 5;
     
     NSArray *weekdayNames = @[@"S", @"M", @"T", @"W", @"T", @"F", @"S"];
     
-    NSDictionary* textAttributes = nil;
-    if (self.showDayNumbers)
-    {
-        NSMutableParagraphStyle* paragraphStyle = [NSMutableParagraphStyle new];
-        paragraphStyle.alignment = NSTextAlignmentLeft;
-        textAttributes = @{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:cellSize * 0.4], NSParagraphStyleAttributeName: paragraphStyle};
-    }
-    
     [[UIColor colorWithWhite:0.56 alpha:1] setFill];
     NSInteger textHeight = cellSize * 1.2;
     for (NSInteger i = 0; i < 7; i += 1) {
         [weekdayNames[i] drawInRect:CGRectMake(i * (cellSize + self.spacing), 0, cellSize, cellSize) withFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:cellSize * 0.65] lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentCenter];
     }
-    
+
+    NSDictionary *dayNumberTextAttributes = nil;
+    if (self.showDayNumbers)
+    {
+        NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+        paragraphStyle.alignment = NSTextAlignmentLeft;
+        dayNumberTextAttributes = @{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:cellSize * 0.4], NSParagraphStyleAttributeName: paragraphStyle};
+    }
+
     for (NSDate *date = firstDay; [date compare:nextMonth] == NSOrderedAscending; date = [date tea_nextDay]) {
         NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
         NSDateComponents *comp = [calendar components:NSCalendarUnitWeekday | NSCalendarUnitWeekOfMonth | NSCalendarUnitDay fromDate:date];
@@ -164,7 +164,7 @@ static const NSInteger kDefaultGradeCount = 5;
         
         if (self.showDayNumbers) {
             NSString *string = [NSString stringWithFormat:@"%ld", (long)day];
-            [string drawInRect:backgroundRect withAttributes:textAttributes];
+            [string drawInRect:backgroundRect withAttributes:dayNumberTextAttributes];
         }
     }
 }
