@@ -1,3 +1,2 @@
 language: objective-c
 xcode_project: TEAChartDemo.xcodeproj
-xcode_scheme: TEAChartDemo
