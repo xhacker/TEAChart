@@ -1,2 +1,7 @@
 language: objective-c
 xcode_project: TEAChartDemo.xcodeproj
+xcode_scheme: TEAChartDemo
+xcode_sdk:
+  - iphonesimulator7.0
+  - iphonesimulator7.1
+  - iphonesimulator8.0
