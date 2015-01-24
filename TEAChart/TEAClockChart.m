@@ -49,7 +49,7 @@
     // draw sectors
     [self.fillColor setFill];
     [self.data enumerateObjectsUsingBlock:^(TEATimeRange *timeRange, NSUInteger idx, BOOL *stop) {
-        NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+        NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:TEACalendarIdentifierGregorian];
         NSDateComponents *startComp = [calendar components:NSCalendarUnitHour | NSCalendarUnitMinute fromDate:timeRange.start];
         NSDateComponents *endComp = [calendar components:NSCalendarUnitHour | NSCalendarUnitMinute fromDate:timeRange.end];
         CGFloat startMinutes = startComp.hour * 60 + startComp.minute;
