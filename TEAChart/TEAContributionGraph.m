@@ -15,34 +15,17 @@ static const NSInteger kDefaultGradeCount = 5;
 
 @property (nonatomic) NSUInteger gradeCount;
 @property (nonatomic, strong) NSMutableArray *gradeMinCutoff;
+@property (nonatomic, strong) NSDate *graphMonth;
 @property (nonatomic, strong) NSMutableArray *colors;
 
 @end
 
 @implementation TEAContributionGraph
 
-#pragma mark - View lifecycle
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self loadDefaults];
-    }
-    return self;
-}
-
-- (id)initWithCoder:(NSCoder *)decoder
-{
-    self = [super initWithCoder:decoder];
-    if (self) {
-        [self loadDefaults];
-    }
-    return self;
-}
-
 - (void)loadDefaults
 {
+    self.opaque = NO;
+
     // Load one-time data from the delegate
     
     // Get the total number of grades
@@ -170,6 +153,13 @@ static const NSInteger kDefaultGradeCount = 5;
 }
 
 #pragma mark Setters
+
+- (void)setDelegate:(id<TEAContributionGraphDataSource>)delegate
+{
+    _delegate = delegate;
+    [self loadDefaults];
+    [self setNeedsDisplay];
+}
 
 - (void)setWidth:(CGFloat)width
 {

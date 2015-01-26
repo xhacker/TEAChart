@@ -33,10 +33,17 @@
     secondBarChart.xLabels = @[@"A", @"B", @"C", @"D", @"E", @"F"];
     [self.view addSubview:secondBarChart];
     
-    // Contribution graph
+    // Contribution graph, the Storyboard way
     self.contributionGraph.width = 12;
     self.contributionGraph.spacing = 6;
-    
+
+    // Contribution graph, the code way
+    TEAContributionGraph *secondContributionGraph = [[TEAContributionGraph alloc] initWithFrame:CGRectMake(75, 430, 140, 140)];
+    secondContributionGraph.width = 12;
+    secondContributionGraph.spacing = 6;
+    [self.view addSubview:secondContributionGraph];
+    secondContributionGraph.delegate = self;
+
     // Clock chart
     self.clockChart.data = @[
         [TEATimeRange timeRangeWithStart:[NSDate date] end:[NSDate dateWithTimeIntervalSinceNow:3600]],

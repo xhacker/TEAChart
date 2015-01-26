@@ -59,7 +59,6 @@
 
 @property (nonatomic) CGFloat width;
 @property (nonatomic) CGFloat spacing;
-@property (nonatomic, strong) NSDate *graphMonth;
 @property (nonatomic) BOOL showDayNumbers;
 @property (nonatomic) BOOL widthFromViewSize;
 
