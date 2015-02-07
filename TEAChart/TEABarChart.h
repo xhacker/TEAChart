@@ -17,17 +17,17 @@
 @property (nonatomic) NSArray *xLabels;
 
 // Max y value for chart (only works when autoMax is NO)
-@property (nonatomic) CGFloat max;
+@property (nonatomic) IBInspectable CGFloat max;
 
 // Auto set max value
-@property (nonatomic) BOOL autoMax;
+@property (nonatomic) IBInspectable BOOL autoMax;
 
-@property (nonatomic) UIColor *barColor;
+@property (nonatomic) IBInspectable UIColor *barColor;
 @property (nonatomic) NSArray *barColors;
-@property (nonatomic) NSInteger barSpacing;
-@property (nonatomic) UIColor *backgroundColor;
+@property (nonatomic) IBInspectable NSInteger barSpacing;
+@property (nonatomic) IBInspectable UIColor *backgroundColor;
 
 // Round bar height to pixel for sharper chart
-@property (nonatomic) BOOL roundToPixel;
+@property (nonatomic) IBInspectable BOOL roundToPixel;
 
 @end

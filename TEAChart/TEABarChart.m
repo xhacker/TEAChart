@@ -88,8 +88,8 @@
         CGRect backgroundRect = CGRectMake(x, 0, barWidthRounded, barMaxHeight);
         CGContextFillRect(context, backgroundRect);
       
-        self.barColor = (_barColors)?[_barColors objectAtIndex:(i%_barColors.count)]:_barColor;
-        [self.barColor setFill];
+        UIColor *barColor = self.barColors ? self.barColors[i % self.barColors.count] : self.barColor;
+        [barColor setFill];
         CGRect barRect = CGRectMake(x, barMaxHeight - barHeight, barWidthRounded, barHeight);
         CGContextFillRect(context, barRect);
     }

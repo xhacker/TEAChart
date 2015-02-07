@@ -61,7 +61,7 @@
 @property (nonatomic) CGFloat cellSize;
 @property (nonatomic) CGFloat cellSpacing;
 
-@property (nonatomic) BOOL showDayNumbers;
+@property (nonatomic) IBInspectable BOOL showDayNumbers;
 
 @property (nonatomic, weak) IBOutlet id<TEAContributionGraphDataSource> delegate;
 
