@@ -17,8 +17,8 @@ See the header files for complete documents.
 
 ![Contribution Graph](http://i.imgur.com/9JsSt23.png)
 
-The contribution graph mimics the GitHub one. You can implement the TEAContributionGraphDataSource to customize the style of the graph.
-The methods required to customize it are:
+The contribution graph mimics the GitHub one. You can implement the `TEAContributionGraphDataSource` protocol to provide data and customize the style of the graph.
+The required methods are:
 ```objective-c
 // The DataSource should return an NSDate that occurs inside the month to graph
 - (NSDate *)monthForGraph;
@@ -37,22 +37,14 @@ Each grade is represented by a different color.
 - (UIColor *)colorForGrade:(NSUInteger)grade;
 
 // Defines the cutoff values used for translating values into grades.
-// For example, you may want different grades for the values grade==0, 1 <= grade < 5, 5 <= grade.
+// For example, you may want different grades for the values grade == 0, 1 <= grade < 5, 5 <= grade.
 // This means there are three grades total
 // The minimumValue for the first grade is 0, the minimum for the second grade is 1, and the minimum for the third grade is 5
 - (NSInteger)minimumValueForGrade:(NSUInteger)grade;
 ```
 
-Here is a simple sample of implementing the DataSource required methods after connecting the DataSource in InterfaceBuilder.
-I will add delegate methods to adjust the width and spacing in a future release.
+Here is a simple sample of implementing the DataSource required methods after connecting `delegate` in Interface Builder.
 ```objective-c
-// This sample uses Storyboard
-@property (weak, nonatomic) IBOutlet TEAContributionGraph *contributionGraph;
-
-// Contribution graph
-self.contributionGraph.width = 12;
-self.contributionGraph.spacing = 6;
-
 #pragma mark - TEAContributionGraphDataSource Methods
 - (NSDate *)monthForGraph
 {

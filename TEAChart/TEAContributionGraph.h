@@ -57,10 +57,11 @@
 
 #pragma mark - Properties
 
-@property (nonatomic) CGFloat width;
-@property (nonatomic) CGFloat spacing;
+// If you want to fine tune the size, override these two properties.
+@property (nonatomic) CGFloat cellSize;
+@property (nonatomic) CGFloat cellSpacing;
+
 @property (nonatomic) BOOL showDayNumbers;
-@property (nonatomic) BOOL widthFromViewSize;
 
 @property (nonatomic, weak) IBOutlet id<TEAContributionGraphDataSource> delegate;
 
