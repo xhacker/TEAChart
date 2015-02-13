@@ -36,20 +36,26 @@
     // Contribution graph, the code way
     TEAContributionGraph *secondContributionGraph = [[TEAContributionGraph alloc] initWithFrame:CGRectMake(75, 430, 140, 140)];
     [self.view addSubview:secondContributionGraph];
+    secondContributionGraph.showDayNumbers = YES;
     secondContributionGraph.delegate = self;
 
     // Clock chart
     self.clockChart.data = @[
         [TEATimeRange timeRangeWithStart:[NSDate date] end:[NSDate dateWithTimeIntervalSinceNow:3600]],
-        // ...
+        [TEATimeRange timeRangeWithStart:[NSDate date] end:[NSDate dateWithTimeIntervalSinceNow:7200]],
+        [TEATimeRange timeRangeWithStart:[NSDate date] end:[NSDate dateWithTimeIntervalSinceNow:10800]],
     ];
 }
 
 #pragma mark - TEAContributionGraphDataSource Methods
+- (void)dateTapped:(NSDictionary *)dict{
+    NSLog(@"date:%@ -- value:%@",dict[@"date"], dict[@"value"]);
+}
 
 - (NSDate *)monthForGraph
 {
-    return [NSDate date];
+    NSLog(@"%@",[[NSDate date] dateByAddingTimeInterval:10800]);
+    return [[NSDate date] dateByAddingTimeInterval:10800];
 }
 
 - (NSInteger)valueForDay:(NSUInteger)day

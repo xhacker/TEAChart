@@ -8,6 +8,7 @@
 
 #import "TEAContributionGraph.h"
 #import "NSDate+TEAExtensions.h"
+#import <objc/runtime.h>
 
 static const NSInteger kDefaultGradeCount = 5;
 
@@ -17,13 +18,11 @@ static const NSInteger kDefaultGradeCount = 5;
 @property (nonatomic, strong) NSMutableArray *gradeMinCutoff;
 @property (nonatomic, strong) NSDate *graphMonth;
 @property (nonatomic, strong) NSMutableArray *colors;
-
 @end
 
 @implementation TEAContributionGraph
 
-- (void)loadDefaults
-{
+- (void)loadDefaults{
     self.opaque = NO;
 
     // Load one-time data from the delegate
@@ -91,8 +90,7 @@ static const NSInteger kDefaultGradeCount = 5;
     _cellSize = _cellSpacing * 2;
 }
 
-- (void)drawRect:(CGRect)rect
-{
+- (void)drawRect:(CGRect)rect{
     [super drawRect:rect];
     
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -117,14 +115,14 @@ static const NSInteger kDefaultGradeCount = 5;
     }
 
     NSDictionary *dayNumberTextAttributes = nil;
-    if (self.showDayNumbers)
-    {
+    if (self.showDayNumbers){
         NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
         paragraphStyle.alignment = NSTextAlignmentLeft;
         dayNumberTextAttributes = @{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:self.cellSize * 0.4], NSParagraphStyleAttributeName: paragraphStyle};
     }
 
     for (NSDate *date = firstDay; [date compare:nextMonth] == NSOrderedAscending; date = [date tea_nextDay]) {
+
         NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:TEACalendarIdentifierGregorian];
         NSDateComponents *comp = [calendar components:NSCalendarUnitWeekday | NSCalendarUnitWeekOfMonth | NSCalendarUnitDay fromDate:date];
         NSInteger weekday = comp.weekday;
@@ -145,11 +143,26 @@ static const NSInteger kDefaultGradeCount = 5;
         }
         
         [self.colors[grade] setFill];
+
         CGRect backgroundRect = CGRectMake((weekday - 1) * (self.cellSize + self.cellSpacing),
                                            (weekOfMonth - 1) * (self.cellSize + self.cellSpacing) + textHeight,
                                            self.cellSize, self.cellSize);
         CGContextFillRect(context, backgroundRect);
-        
+
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setBackgroundColor:[UIColor clearColor]];
+        [btn setFrame:backgroundRect];
+        [btn addTarget:self action:@selector(daySelected:) forControlEvents:UIControlEventTouchUpInside];
+
+        if ([_delegate respondsToSelector:@selector(dateTapped:)]) {
+            NSDictionary *db = @{
+                                 @"date"  : [date tea_nextDay],
+                                 @"value" : @([_delegate valueForDay:day])
+                                };
+            objc_setAssociatedObject(btn, @"dynamic_key", db, OBJC_ASSOCIATION_COPY);
+            [self addSubview:btn];
+        }
+
         if (self.showDayNumbers) {
             NSString *string = [NSString stringWithFormat:@"%ld", (long)day];
             [string drawInRect:backgroundRect withAttributes:dayNumberTextAttributes];
@@ -157,25 +170,30 @@ static const NSInteger kDefaultGradeCount = 5;
     }
 }
 
-#pragma mark Setters
+- (void)daySelected:(id)sender{
+    NSDictionary *db = (NSDictionary*)objc_getAssociatedObject(sender, @"dynamic_key");
+    if ([_delegate respondsToSelector:@selector(dateTapped:)]) {
+        [_delegate dateTapped:db];
+    }
+}
 
-- (void)setDelegate:(id<TEAContributionGraphDataSource>)delegate
-{
+
+#pragma mark Setters
+- (void)setDelegate:(id<TEAContributionGraphDataSource>)delegate{
     _delegate = delegate;
     [self loadDefaults];
     [self setNeedsDisplay];
 }
 
-- (void)setCellSize:(CGFloat)cellSize
-{
+- (void)setCellSize:(CGFloat)cellSize{
     _cellSize = cellSize;
     [self setNeedsDisplay];
 }
 
-- (void)setCellSpacing:(CGFloat)cellSpacing
-{
+- (void)setCellSpacing:(CGFloat)cellSpacing{
     _cellSpacing = cellSpacing;
     [self setNeedsDisplay];
 }
+
 
 @end
