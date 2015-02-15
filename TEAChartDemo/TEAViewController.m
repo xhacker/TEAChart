@@ -48,7 +48,8 @@
 }
 
 #pragma mark - TEAContributionGraphDataSource Methods
-- (void)dateTapped:(NSDictionary *)dict{
+- (void)dateTapped:(NSDictionary *)dict
+{
     NSLog(@"date:%@ -- value:%@",dict[@"date"], dict[@"value"]);
 }
 
