@@ -12,6 +12,10 @@
 
 @protocol TEAContributionGraphDataSource <NSObject>
 
+@optional
+
+- (void)dateTapped:(NSDictionary*)dict;
+
 @required
 
 /**
