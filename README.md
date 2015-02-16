@@ -47,9 +47,20 @@ Each grade is represented by a different color.
 - (NSInteger)minimumValueForGrade:(NSUInteger)grade;
 ```
 
-Here is a simple sample of implementing the DataSource required methods after connecting `delegate` in Interface Builder.
+There’s also a method to define the tap behavior on contribution graph cells:
+```objective-c
+- (void)dateTapped:(NSDictionary *)dict;
+```
+
+Here is a simple sample of implementing the delegate methods after connecting `delegate` in Interface Builder.
 ```objective-c
 #pragma mark - TEAContributionGraphDataSource Methods
+
+- (void)dateTapped:(NSDictionary *)dict
+{
+    NSLog(@"date: %@ -- value: %@", dict[@"date"], dict[@"value"]);
+}
+
 - (NSDate *)monthForGraph
 {
 	// Graph the current month

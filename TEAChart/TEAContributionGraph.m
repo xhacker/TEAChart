@@ -18,6 +18,7 @@ static const NSInteger kDefaultGradeCount = 5;
 @property (nonatomic, strong) NSMutableArray *gradeMinCutoff;
 @property (nonatomic, strong) NSDate *graphMonth;
 @property (nonatomic, strong) NSMutableArray *colors;
+
 @end
 
 @implementation TEAContributionGraph
@@ -97,7 +98,7 @@ static const NSInteger kDefaultGradeCount = 5;
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:TEACalendarIdentifierGregorian];
     NSDateComponents *comp = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:_graphMonth];
     comp.day = 1;
     NSDate *firstDay = [calendar dateFromComponents:comp];
@@ -117,14 +118,13 @@ static const NSInteger kDefaultGradeCount = 5;
     }
 
     NSDictionary *dayNumberTextAttributes = nil;
-    if (self.showDayNumbers){
+    if (self.showDayNumbers) {
         NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
         paragraphStyle.alignment = NSTextAlignmentLeft;
         dayNumberTextAttributes = @{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:self.cellSize * 0.4], NSParagraphStyleAttributeName: paragraphStyle};
     }
 
     for (NSDate *date = firstDay; [date compare:nextMonth] == NSOrderedAscending; date = [date tea_nextDay]) {
-
         NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:TEACalendarIdentifierGregorian];
         NSDateComponents *comp = [calendar components:NSCalendarUnitWeekday | NSCalendarUnitWeekOfMonth | NSCalendarUnitDay fromDate:date];
         NSInteger weekday = comp.weekday;
@@ -133,8 +133,8 @@ static const NSInteger kDefaultGradeCount = 5;
         
         NSInteger grade = 0;
         NSInteger contributions = 0;
-        if ([_delegate respondsToSelector:@selector(valueForDay:)]) {
-            contributions = [_delegate valueForDay:day];
+        if ([self.delegate respondsToSelector:@selector(valueForDay:)]) {
+            contributions = [self.delegate valueForDay:day];
         }
         
         // Get the grade from the minimum cutoffs
@@ -151,19 +151,18 @@ static const NSInteger kDefaultGradeCount = 5;
                                            self.cellSize, self.cellSize);
         CGContextFillRect(context, backgroundRect);
 
-        if ([_delegate respondsToSelector:@selector(dateTapped:)]) {
+        if ([self.delegate respondsToSelector:@selector(dateTapped:)]) {
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+            button.backgroundColor = [UIColor clearColor];
+            button.frame = backgroundRect;
+            [button addTarget:self action:@selector(daySelected:) forControlEvents:UIControlEventTouchUpInside];
 
-            UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-            [btn setBackgroundColor:[UIColor clearColor]];
-            [btn setFrame:backgroundRect];
-            [btn addTarget:self action:@selector(daySelected:) forControlEvents:UIControlEventTouchUpInside];
-
-            NSDictionary *db = @{
-                                 @"date"  : [date tea_nextDay],
-                                 @"value" : @([_delegate valueForDay:day])
-                                };
-            objc_setAssociatedObject(btn, @"dynamic_key", db, OBJC_ASSOCIATION_COPY);
-            [self addSubview:btn];
+            NSDictionary *data = @{
+                                   @"date": [date tea_nextDay],
+                                   @"value": @([self.delegate valueForDay:day])
+                                  };
+            objc_setAssociatedObject(button, @"dynamic_key", data, OBJC_ASSOCIATION_COPY);
+            [self addSubview:button];
         }
 
         if (self.showDayNumbers) {
@@ -175,14 +174,14 @@ static const NSInteger kDefaultGradeCount = 5;
 
 - (void)daySelected:(id)sender
 {
-    NSDictionary *db = (NSDictionary*)objc_getAssociatedObject(sender, @"dynamic_key");
-    if ([_delegate respondsToSelector:@selector(dateTapped:)]) {
-        [_delegate dateTapped:db];
+    NSDictionary *data = (NSDictionary *)objc_getAssociatedObject(sender, @"dynamic_key");
+    if ([self.delegate respondsToSelector:@selector(dateTapped:)]) {
+        [self.delegate dateTapped:data];
     }
 }
 
-
 #pragma mark Setters
+
 - (void)setDelegate:(id<TEAContributionGraphDataSource>)delegate
 {
     _delegate = delegate;

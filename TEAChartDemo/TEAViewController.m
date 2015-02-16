@@ -48,15 +48,15 @@
 }
 
 #pragma mark - TEAContributionGraphDataSource Methods
+
 - (void)dateTapped:(NSDictionary *)dict
 {
-    NSLog(@"date:%@ -- value:%@",dict[@"date"], dict[@"value"]);
+    NSLog(@"date: %@ -- value: %@", dict[@"date"], dict[@"value"]);
 }
 
 - (NSDate *)monthForGraph
 {
-    NSLog(@"%@",[[NSDate date] dateByAddingTimeInterval:10800]);
-    return [[NSDate date] dateByAddingTimeInterval:10800];
+    return [NSDate date];
 }
 
 - (NSInteger)valueForDay:(NSUInteger)day

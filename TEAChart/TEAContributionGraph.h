@@ -14,7 +14,7 @@
 
 @optional
 
-- (void)dateTapped:(NSDictionary*)dict;
+- (void)dateTapped:(NSDictionary *)dict;
 
 @required
 
