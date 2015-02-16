@@ -8,6 +8,7 @@
 
 #import "TEAClockChart.h"
 #import "TEATimeRange.h"
+#import "NSDate+TEAExtensions.h"
 
 @implementation TEAClockChart
 

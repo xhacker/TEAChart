@@ -14,9 +14,3 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 #endif
-
-#ifdef __IPHONE_8_0
-    #define TEACalendarIdentifierGregorian NSCalendarIdentifierGregorian
-#else
-    #define TEACalendarIdentifierGregorian NSGregorianCalendar
-#endif

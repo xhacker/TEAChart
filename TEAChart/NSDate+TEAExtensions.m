@@ -15,7 +15,7 @@
     NSDateComponents *components = [[NSDateComponents alloc] init];
     components.day = 1;
     
-    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:TEACalendarIdentifierGregorian];
     return [calendar dateByAddingComponents:components toDate:self options:0];
 }
 
