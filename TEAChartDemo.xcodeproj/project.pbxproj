@@ -25,6 +25,7 @@
 		1A1149B018312D610015BDE2 /* TEAContributionGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1149AF18312D610015BDE2 /* TEAContributionGraph.m */; };
 		1A1149B3183134F40015BDE2 /* TEAClockChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1149B2183134F40015BDE2 /* TEAClockChart.m */; };
 		1A1149B618313ABB0015BDE2 /* TEATimeRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1149B518313ABB0015BDE2 /* TEATimeRange.m */; };
+		1A1DEC271BA4EC3100028BCF /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A1DEC261BA4EC3100028BCF /* Launch Screen.storyboard */; settings = {ASSET_TAGS = (); }; };
 		1AADE620189B990A00EB7C2C /* NSDate+TEAExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AADE61F189B990A00EB7C2C /* NSDate+TEAExtensions.m */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,7 @@
 		1A1149B2183134F40015BDE2 /* TEAClockChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TEAClockChart.m; path = TEAChart/TEAClockChart.m; sourceTree = "<group>"; };
 		1A1149B418313ABB0015BDE2 /* TEATimeRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TEATimeRange.h; path = TEAChart/TEATimeRange.h; sourceTree = "<group>"; };
 		1A1149B518313ABB0015BDE2 /* TEATimeRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TEATimeRange.m; path = TEAChart/TEATimeRange.m; sourceTree = "<group>"; };
+		1A1DEC261BA4EC3100028BCF /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		1AADE61E189B990A00EB7C2C /* NSDate+TEAExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+TEAExtensions.h"; path = "TEAChart/NSDate+TEAExtensions.h"; sourceTree = "<group>"; };
 		1AADE61F189B990A00EB7C2C /* NSDate+TEAExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+TEAExtensions.m"; path = "TEAChart/NSDate+TEAExtensions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -132,6 +134,7 @@
 				1A11498318311D120015BDE2 /* TEAAppDelegate.h */,
 				1A11498418311D120015BDE2 /* TEAAppDelegate.m */,
 				1A11498618311D120015BDE2 /* Main.storyboard */,
+				1A1DEC261BA4EC3100028BCF /* Launch Screen.storyboard */,
 				1A11498918311D120015BDE2 /* TEAViewController.h */,
 				1A11498A18311D120015BDE2 /* TEAViewController.m */,
 				1A11498C18311D120015BDE2 /* Images.xcassets */,
@@ -232,7 +235,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = TEA;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Xhacker;
 				TargetAttributes = {
 					1A11499118311D120015BDE2 = {
@@ -266,6 +269,7 @@
 			files = (
 				1A11498D18311D120015BDE2 /* Images.xcassets in Resources */,
 				1A11497F18311D120015BDE2 /* InfoPlist.strings in Resources */,
+				1A1DEC271BA4EC3100028BCF /* Launch Screen.storyboard in Resources */,
 				1A11498818311D120015BDE2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,6 +364,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -420,6 +425,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TEAChartDemo/TEAChartDemo-Prefix.pch";
 				INFOPLIST_FILE = "TEAChartDemo/TEAChartDemo-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.teawhen.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -433,6 +439,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TEAChartDemo/TEAChartDemo-Prefix.pch";
 				INFOPLIST_FILE = "TEAChartDemo/TEAChartDemo-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.teawhen.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -454,6 +461,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "TEAChartDemoTests/TEAChartDemoTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.teawhen.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -472,6 +480,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TEAChartDemo/TEAChartDemo-Prefix.pch";
 				INFOPLIST_FILE = "TEAChartDemoTests/TEAChartDemoTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.teawhen.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
