@@ -111,10 +111,15 @@ static const NSInteger kDefaultGradeCount = 5;
     [[UIColor colorWithWhite:0.56 alpha:1] setFill];
     NSInteger textHeight = self.cellSize * 1.2;
     for (NSInteger i = 0; i < 7; i += 1) {
-        [weekdayNames[i] drawInRect:CGRectMake(i * (self.cellSize + self.cellSpacing), 0, self.cellSize, self.cellSize)
-                           withFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:self.cellSize * 0.65]
-                      lineBreakMode:NSLineBreakByClipping
-                          alignment:NSTextAlignmentCenter];
+        CGRect rect = CGRectMake(i * (self.cellSize + self.cellSpacing), 0, self.cellSize, self.cellSize);
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
+        paragraphStyle.lineBreakMode = NSLineBreakByClipping;
+        paragraphStyle.alignment = NSTextAlignmentCenter;
+        NSDictionary *attributes = @{
+            NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:self.cellSize * 0.65],
+            NSParagraphStyleAttributeName: paragraphStyle,
+        };
+        [weekdayNames[i] drawInRect:rect withAttributes:attributes];
     }
 
     NSDictionary *dayNumberTextAttributes = nil;
