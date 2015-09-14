@@ -13,7 +13,7 @@ Supports Storyboard.
 
 The most convinient way is to use Storyboard, where you can set the attributes right in the Interface Builder.
 
-<img alt="Interface Builder" src="Screenshots/Interface Builder.png" width="277">
+<img alt="Interface Builder" src="Screenshots/InterfaceBuilder.png" width="277">
 
 See the header files for complete documents.
 
