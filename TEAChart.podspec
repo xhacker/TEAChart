@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.author       = { "Xhacker Liu" => "liu.dongyuan@gmail.com" }
 
   s.platform     = :ios, '6.0'
-  s.source       = { :git => "https://github.com/xhacker/TEAChart.git", :tag => "0.3.2" }
+  s.source       = { :git => "https://github.com/xhacker/TEAChart.git", :tag => s.version }
   s.source_files = 'TEAChart', 'TEAChart/**/*.{h,m}'
   s.requires_arc = true
 end
