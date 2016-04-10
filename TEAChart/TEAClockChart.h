@@ -16,6 +16,7 @@ IB_DESIGNABLE
 
 @property (nonatomic) IBInspectable UIColor *fillColor;
 @property (nonatomic) IBInspectable UIColor *strokeColor;
+@property (nonatomic) IBInspectable CGFloat borderWidth;
 
 
 @end

@@ -36,6 +36,7 @@
     
     _fillColor = [UIColor colorWithRed:0.922 green:0.204 blue:0.239 alpha:0.25];
     _strokeColor = [UIColor colorWithWhite:0.85 alpha:1];
+    _borderWidth = 2;
 }
 
 - (void)drawRect:(CGRect)rect
@@ -69,7 +70,7 @@
     }];
     
     // draw ring
-    CGContextSetLineWidth(context, 2);
+    CGContextSetLineWidth(context, self.borderWidth);
     [self.strokeColor setStroke];
     CGFloat margin = 0.1;
     CGContextAddEllipseInRect(context, CGRectMake(originX - radius * (1 - margin), originY - radius * (1 - margin), 2 * (1 - margin) * radius, 2 * (1 - margin) * radius));
