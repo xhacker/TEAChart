@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/TEAChart.svg?style=flat)](https://github.com/xhacker/TEAChart/blob/master/LICENSE)
 [![Platform](https://img.shields.io/cocoapods/p/TEAChart.svg?style=flat)](http://cocoadocs.org/docsets/TEAChart/)
 
-Simple and intuitive iOS chart library, for [Pomotodo](https://itunes.apple.com/app/fan-jia-tu-dou/id866339080) app. **Contribution graph**, **clock chart**, and **bar chart**. The APIs are *not* stable before 1.0.
+Simple and intuitive iOS chart library, for [Pomotodo](https://itunes.apple.com/app/fan-jia-tu-dou/id866339080) app. **Contribution graph**, **clock chart**, and **bar chart**.
 
 Supports Storyboard.
 
@@ -126,7 +126,7 @@ barChart.xLabels = @[@"A", @"B", @"C", @"D", @"E", @"F"];
 Use CocoaPods:
 
 ```ruby
-pod 'TEAChart'
+pod 'TEAChart', '~> 1.0'
 ```
 
 Or drag **TEAChart** folder into your project.
