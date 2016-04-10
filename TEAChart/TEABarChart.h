@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+IB_DESIGNABLE
 @interface TEABarChart : UIView
 
 // Array of NSNumber

@@ -42,6 +42,14 @@
     _roundToPixel = YES;
 }
 
+- (void)prepareForInterfaceBuilder
+{
+    [self loadDefaults];
+    
+    self.data = @[@3, @1, @4, @1, @5, @9, @2, @6];
+    self.xLabels = @[@"T", @"E", @"A", @"C", @"h", @"a", @"r", @"t"];
+}
+
 - (void)drawRect:(CGRect)rect
 {    
     [super drawRect:rect];

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+IB_DESIGNABLE
 @interface TEAClockChart : UIView
 
 // Array of TEATimeRange
