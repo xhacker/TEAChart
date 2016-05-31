@@ -99,15 +99,17 @@ static const NSInteger kDefaultGradeCount = 5;
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:TEACalendarIdentifierGregorian];
+    [calendar setLocale:[NSLocale currentLocale]];
     NSDateComponents *comp = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:_graphMonth];
     comp.day = 1;
     NSDate *firstDay = [calendar dateFromComponents:comp];
-    
+    NSUInteger firstDayOfWeek = [calendar firstWeekday];
+	
     comp.month = comp.month + 1;
     NSDate *nextMonth = [calendar dateFromComponents:comp];
-    
-    NSArray *weekdayNames = @[@"S", @"M", @"T", @"W", @"T", @"F", @"S"];
-    
+	
+    NSArray *weekdayNames = [[[NSDateFormatter alloc] init] veryShortWeekdaySymbols];
+	
     [[UIColor colorWithWhite:0.56 alpha:1] setFill];
     NSInteger textHeight = self.cellSize * 1.2;
     for (NSInteger i = 0; i < 7; i += 1) {
@@ -119,7 +121,7 @@ static const NSInteger kDefaultGradeCount = 5;
             NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:self.cellSize * 0.65],
             NSParagraphStyleAttributeName: paragraphStyle,
         };
-        [weekdayNames[i] drawInRect:rect withAttributes:attributes];
+        [weekdayNames[(i+firstDayOfWeek-1)%7] drawInRect:rect withAttributes:attributes];
     }
 
     NSDictionary *dayNumberTextAttributes = nil;
@@ -131,8 +133,9 @@ static const NSInteger kDefaultGradeCount = 5;
 
     for (NSDate *date = firstDay; [date compare:nextMonth] == NSOrderedAscending; date = [date tea_nextDay]) {
         NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:TEACalendarIdentifierGregorian];
+        [calendar setFirstWeekday:firstDayOfWeek];
         NSDateComponents *comp = [calendar components:NSCalendarUnitWeekday | NSCalendarUnitWeekOfMonth | NSCalendarUnitDay fromDate:date];
-        NSInteger weekday = comp.weekday;
+        NSInteger weekday = firstDayOfWeek == 1 ? comp.weekday : ((comp.weekday + 5) % 7) + 1;
         NSInteger weekOfMonth = comp.weekOfMonth;
         NSInteger day = comp.day;
         
