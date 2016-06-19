@@ -107,9 +107,9 @@ static const NSInteger kDefaultGradeCount = 5;
 	
     comp.month = comp.month + 1;
     NSDate *nextMonth = [calendar dateFromComponents:comp];
-	
-    NSArray *weekdayNames = [[[NSDateFormatter alloc] init] veryShortWeekdaySymbols];
-	
+    
+    NSArray *weekdayNames = [[NSDateFormatter alloc] init].veryShortWeekdaySymbols;
+    
     [[UIColor colorWithWhite:0.56 alpha:1] setFill];
     NSInteger textHeight = self.cellSize * 1.2;
     for (NSInteger i = 0; i < 7; i += 1) {
@@ -133,7 +133,7 @@ static const NSInteger kDefaultGradeCount = 5;
 
     for (NSDate *date = firstDay; [date compare:nextMonth] == NSOrderedAscending; date = [date tea_nextDay]) {
         NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:TEACalendarIdentifierGregorian];
-        [calendar setFirstWeekday:firstWeekday];
+        calendar.firstWeekday = firstWeekday;
         NSDateComponents *comp = [calendar components:NSCalendarUnitWeekday | NSCalendarUnitWeekOfMonth | NSCalendarUnitDay fromDate:date];
         NSInteger weekday = firstWeekday == 1 ? comp.weekday : ((comp.weekday + 5) % 7) + 1;
         NSInteger weekOfMonth = comp.weekOfMonth;
