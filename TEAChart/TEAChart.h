@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 Xhacker. All rights reserved.
 //
 
-#ifndef _TEAChart_
-#define _TEAChart_
+#import <UIKit/UIKit.h>
+
+FOUNDATION_EXPORT double TEAChart_VersionNumber;
+FOUNDATION_EXPORT const unsigned char TEAChart_VersionString[];
 
 #import "TEABarChart.h"
 #import "TEAContributionGraph.h"
 #import "TEAClockChart.h"
 #import "TEATimeRange.h"
-
-#endif

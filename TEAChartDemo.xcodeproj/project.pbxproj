@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -27,6 +27,17 @@
 		1A1149B618313ABB0015BDE2 /* TEATimeRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1149B518313ABB0015BDE2 /* TEATimeRange.m */; };
 		1A1DEC271BA4EC3100028BCF /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A1DEC261BA4EC3100028BCF /* Launch Screen.storyboard */; };
 		1AADE620189B990A00EB7C2C /* NSDate+TEAExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AADE61F189B990A00EB7C2C /* NSDate+TEAExtensions.m */; };
+		CFC4CB3F1E3F126C006DF0FE /* TEAChart.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A1149AD183121CF0015BDE2 /* TEAChart.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CFC4CB401E3F126C006DF0FE /* TEABarChart.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A1149A918311DA10015BDE2 /* TEABarChart.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CFC4CB411E3F126C006DF0FE /* TEABarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1149AA18311DA10015BDE2 /* TEABarChart.m */; };
+		CFC4CB421E3F126C006DF0FE /* TEAContributionGraph.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A1149AE18312D610015BDE2 /* TEAContributionGraph.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CFC4CB431E3F126C006DF0FE /* TEAContributionGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1149AF18312D610015BDE2 /* TEAContributionGraph.m */; };
+		CFC4CB441E3F126C006DF0FE /* TEAClockChart.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A1149B1183134F40015BDE2 /* TEAClockChart.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CFC4CB451E3F126C006DF0FE /* TEAClockChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1149B2183134F40015BDE2 /* TEAClockChart.m */; };
+		CFC4CB461E3F126C006DF0FE /* TEATimeRange.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A1149B418313ABB0015BDE2 /* TEATimeRange.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CFC4CB471E3F126C006DF0FE /* TEATimeRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1149B518313ABB0015BDE2 /* TEATimeRange.m */; };
+		CFC4CB481E3F126C006DF0FE /* NSDate+TEAExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AADE61E189B990A00EB7C2C /* NSDate+TEAExtensions.h */; };
+		CFC4CB491E3F126C006DF0FE /* NSDate+TEAExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AADE61F189B990A00EB7C2C /* NSDate+TEAExtensions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +49,19 @@
 			remoteInfo = TEAChartDemo;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CF18DF321E3F1ACC00D82E1C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1A11497118311D120015BDE2 /* TEAChartDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TEAChartDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +95,8 @@
 		1A1DEC261BA4EC3100028BCF /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		1AADE61E189B990A00EB7C2C /* NSDate+TEAExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+TEAExtensions.h"; path = "TEAChart/NSDate+TEAExtensions.h"; sourceTree = "<group>"; };
 		1AADE61F189B990A00EB7C2C /* NSDate+TEAExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+TEAExtensions.m"; path = "TEAChart/NSDate+TEAExtensions.m"; sourceTree = "<group>"; };
+		CFC4CB301E3F11E1006DF0FE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = TEAChart/Info.plist; sourceTree = "<group>"; };
+		CFC4CB371E3F1217006DF0FE /* TEAChart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TEAChart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +120,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CFC4CB331E3F1217006DF0FE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -113,6 +146,7 @@
 			children = (
 				1A11497118311D120015BDE2 /* TEAChartDemo.app */,
 				1A11499218311D120015BDE2 /* TEAChartDemoTests.xctest */,
+				CFC4CB371E3F1217006DF0FE /* TEAChart.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -175,6 +209,7 @@
 		1A1149AC18311DA60015BDE2 /* TEAChart */ = {
 			isa = PBXGroup;
 			children = (
+				CFC4CB2F1E3F0FD4006DF0FE /* Supporting Files */,
 				1A1149AD183121CF0015BDE2 /* TEAChart.h */,
 				1A1149A918311DA10015BDE2 /* TEABarChart.h */,
 				1A1149AA18311DA10015BDE2 /* TEABarChart.m */,
@@ -190,7 +225,31 @@
 			name = TEAChart;
 			sourceTree = "<group>";
 		};
+		CFC4CB2F1E3F0FD4006DF0FE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CFC4CB301E3F11E1006DF0FE /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		CFC4CB341E3F1217006DF0FE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFC4CB461E3F126C006DF0FE /* TEATimeRange.h in Headers */,
+				CFC4CB421E3F126C006DF0FE /* TEAContributionGraph.h in Headers */,
+				CFC4CB401E3F126C006DF0FE /* TEABarChart.h in Headers */,
+				CFC4CB441E3F126C006DF0FE /* TEAClockChart.h in Headers */,
+				CFC4CB3F1E3F126C006DF0FE /* TEAChart.h in Headers */,
+				CFC4CB481E3F126C006DF0FE /* NSDate+TEAExtensions.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		1A11497018311D120015BDE2 /* TEAChartDemo */ = {
@@ -200,6 +259,7 @@
 				1A11496D18311D120015BDE2 /* Sources */,
 				1A11496E18311D120015BDE2 /* Frameworks */,
 				1A11496F18311D120015BDE2 /* Resources */,
+				CF18DF321E3F1ACC00D82E1C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -228,6 +288,24 @@
 			productReference = 1A11499218311D120015BDE2 /* TEAChartDemoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		CFC4CB361E3F1217006DF0FE /* TEAChart */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CFC4CB3C1E3F1217006DF0FE /* Build configuration list for PBXNativeTarget "TEAChart" */;
+			buildPhases = (
+				CFC4CB321E3F1217006DF0FE /* Sources */,
+				CFC4CB331E3F1217006DF0FE /* Frameworks */,
+				CFC4CB341E3F1217006DF0FE /* Headers */,
+				CFC4CB351E3F1217006DF0FE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TEAChart;
+			productName = TEAChart_iOS;
+			productReference = CFC4CB371E3F1217006DF0FE /* TEAChart.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -238,13 +316,21 @@
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Xhacker;
 				TargetAttributes = {
+					1A11497018311D120015BDE2 = {
+						LastSwiftMigration = 0820;
+					};
 					1A11499118311D120015BDE2 = {
 						TestTargetID = 1A11497018311D120015BDE2;
+					};
+					CFC4CB361E3F1217006DF0FE = {
+						CreatedOnToolsVersion = 8.2.1;
+						LastSwiftMigration = 0820;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
 			buildConfigurationList = 1A11496C18311D120015BDE2 /* Build configuration list for PBXProject "TEAChartDemo" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -258,6 +344,7 @@
 			targets = (
 				1A11497018311D120015BDE2 /* TEAChartDemo */,
 				1A11499118311D120015BDE2 /* TEAChartDemoTests */,
+				CFC4CB361E3F1217006DF0FE /* TEAChart */,
 			);
 		};
 /* End PBXProject section */
@@ -279,6 +366,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A11499E18311D120015BDE2 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFC4CB351E3F1217006DF0FE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,6 +399,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A1149A018311D120015BDE2 /* TEAChartDemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFC4CB321E3F1217006DF0FE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFC4CB411E3F126C006DF0FE /* TEABarChart.m in Sources */,
+				CFC4CB451E3F126C006DF0FE /* TEAClockChart.m in Sources */,
+				CFC4CB431E3F126C006DF0FE /* TEAContributionGraph.m in Sources */,
+				CFC4CB471E3F126C006DF0FE /* TEATimeRange.m in Sources */,
+				CFC4CB491E3F126C006DF0FE /* NSDate+TEAExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,11 +538,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TEAChartDemo/TEAChartDemo-Prefix.pch";
 				INFOPLIST_FILE = "TEAChartDemo/TEAChartDemo-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.teawhen.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -446,11 +556,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TEAChartDemo/TEAChartDemo-Prefix.pch";
 				INFOPLIST_FILE = "TEAChartDemo/TEAChartDemo-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.teawhen.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -497,6 +610,61 @@
 			};
 			name = Release;
 		};
+		CFC4CB3D1E3F1217006DF0FE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "$(SRCROOT)/TEAChart/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.teawhen.TEAChart;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		CFC4CB3E1E3F1217006DF0FE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "$(SRCROOT)/TEAChart/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.teawhen.TEAChart;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -523,6 +691,15 @@
 			buildConfigurations = (
 				1A1149A718311D120015BDE2 /* Debug */,
 				1A1149A818311D120015BDE2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CFC4CB3C1E3F1217006DF0FE /* Build configuration list for PBXNativeTarget "TEAChart" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFC4CB3D1E3F1217006DF0FE /* Debug */,
+				CFC4CB3E1E3F1217006DF0FE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
