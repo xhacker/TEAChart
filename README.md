@@ -7,7 +7,7 @@
 
 Simple and intuitive iOS chart library, for [Pomotodo](https://itunes.apple.com/app/fan-jia-tu-dou/id866339080) app. **Contribution graph**, **clock chart**, and **bar chart**.
 
-Supports Storyboard.
+Supports Storyboard and is fully accessible to VoiceOver users.
 
 ## Usage
 
