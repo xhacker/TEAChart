@@ -19,6 +19,11 @@ static const NSInteger kDefaultGradeCount = 5;
 @property (nonatomic, strong) NSDate *graphMonth;
 @property (nonatomic, strong) NSMutableArray *colors;
 
+/**
+ A mutable array of elements that will be made available to VoiceOver.
+ */
+@property (nonatomic, strong) NSMutableArray *accessibleElements;
+
 @end
 
 @implementation TEAContributionGraph
@@ -26,7 +31,9 @@ static const NSInteger kDefaultGradeCount = 5;
 - (void)loadDefaults
 {
     self.opaque = NO;
-
+    // Initialize an empty array which will be populated in -drawRect:
+    self.accessibleElements = [[NSMutableArray alloc] init];
+    
     // Load one-time data from the delegate
     
     // Get the total number of grades
@@ -177,6 +184,22 @@ static const NSInteger kDefaultGradeCount = 5;
             NSString *string = [NSString stringWithFormat:@"%ld", (long)day];
             [string drawInRect:backgroundRect withAttributes:dayNumberTextAttributes];
         }
+        
+        // Populate self.accessibleElements with each blocks date and contribution count.
+        UIAccessibilityElement *dayBlock = [[UIAccessibilityElement alloc] initWithAccessibilityContainer:self];
+        dayBlock.accessibilityFrame = [self convertRect:backgroundRect toView:nil] ;
+        // We use the formatter to convert the date to it's NSString representation.
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateStyle = NSDateFormatterFullStyle;
+        
+        // Assign the accessibilityLabel and append the element to self.accessibleElements.
+        if (contributions > 0) {
+            dayBlock.accessibilityLabel = [NSString stringWithFormat:@"%@ : %ld Contributions", [formatter stringFromDate:date], contributions];
+        } else {
+            dayBlock.accessibilityLabel = [NSString stringWithFormat:@"%@ : No Contributions", [formatter stringFromDate:date]];
+        }
+        
+        [self.accessibleElements addObject:dayBlock];
     }
 }
 
@@ -186,6 +209,28 @@ static const NSInteger kDefaultGradeCount = 5;
     if ([self.delegate respondsToSelector:@selector(dateTapped:)]) {
         [self.delegate dateTapped:data];
     }
+}
+
+#pragma mark - Accessibility
+
+- (BOOL)isAccessibilityElement
+{
+    return NO;
+}
+
+- (NSInteger)accessibilityElementCount
+{
+    return [self.accessibleElements count];
+}
+
+- (id)accessibilityElementAtIndex:(NSInteger)index
+{
+    return self.accessibleElements[index];
+}
+
+-(NSInteger)indexOfAccessibilityElement:(id)element
+{
+    return [self.accessibleElements indexOfObject:element];
 }
 
 #pragma mark Setters
