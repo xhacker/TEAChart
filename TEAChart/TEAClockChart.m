@@ -10,6 +10,15 @@
 #import "TEATimeRange.h"
 #import "NSDate+TEAExtensions.h"
 
+@interface TEAClockChart ()
+
+/**
+ A mutable array of elements that will be made available to VoiceOver.
+ */
+@property (nonatomic, strong) NSMutableArray *accessibleElements;
+
+@end
+
 @implementation TEAClockChart
 
 - (id)initWithFrame:(CGRect)frame
@@ -33,6 +42,8 @@
 - (void)loadDefaults
 {
     self.opaque = NO;
+    // Initialize an empty array which will be populated in -drawRect:
+    self.accessibleElements = [[NSMutableArray alloc] init];
     
     _fillColor = [UIColor colorWithRed:0.922 green:0.204 blue:0.239 alpha:0.25];
     _strokeColor = [UIColor colorWithWhite:0.85 alpha:1];
@@ -66,7 +77,24 @@
         // UIView flips the Y-coordinate, so 0 is actually clockwise
         CGContextAddArc(context, originX, originY, radius * 0.9, startAngle, endAngle, 0);
         CGContextAddLineToPoint(context, originX, originY);
+        
+        // Create and append accessibilityELement by first creating the rect.
+        CGRect accessibleRect = CGContextGetPathBoundingBox(context);
+        // The formatter is used to narrate the start and end times
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateStyle = NSDateFormatterMediumStyle;
+        formatter.timeStyle = NSDateFormatterShortStyle;
+        // Use the above to create the element. IMPORTANT: it MUST be added before FillPath is called.
+        UIAccessibilityElement *element = [[UIAccessibilityElement alloc] initWithAccessibilityContainer:self];
+        NSString *startLabel = [formatter stringFromDate:timeRange.start];
+        NSString *endLabel = [formatter stringFromDate:timeRange.end];
+        element.accessibilityLabel = [NSString stringWithFormat:@"%@ to %@", startLabel, endLabel];
+        element.accessibilityFrame = [self convertRect:accessibleRect toView:nil];
+        [self.accessibleElements addObject:element];
+        
+        // The accessibility elements MUST be added before filling the path.
         CGContextFillPath(context);
+
     }];
     
     // draw ring
@@ -88,6 +116,28 @@
         CGContextStrokePath(context);
         CGContextRestoreGState(context);
     }
+}
+
+#pragma mark - Accessibility
+
+-(BOOL)isAccessibilityElement
+{
+    return NO;
+}
+
+- (NSInteger)accessibilityElementCount
+{
+    return self.data.count;
+}
+
+-(id)accessibilityElementAtIndex:(NSInteger)index
+{
+    return self.accessibleElements[index];
+}
+
+-(NSInteger)indexOfAccessibilityElement:(id)element
+{
+    return [self.accessibleElements indexOfObject:element];
 }
 
 #pragma mark Setters
