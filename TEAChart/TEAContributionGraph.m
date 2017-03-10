@@ -20,7 +20,7 @@ static const NSInteger kDefaultGradeCount = 5;
 @property (nonatomic, strong) NSMutableArray *colors;
 
 /**
- A mutable array of elements that will be made available to VoiceOver.
+ @discussion    A mutable array of elements that will be made available to VoiceOver.
  */
 @property (nonatomic, strong) NSMutableArray *accessibleElements;
 
@@ -211,7 +211,7 @@ static const NSInteger kDefaultGradeCount = 5;
     }
 }
 
-#pragma mark - Accessibility
+#pragma mark Accessibility
 
 - (BOOL)isAccessibilityElement
 {

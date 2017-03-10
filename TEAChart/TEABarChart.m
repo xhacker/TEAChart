@@ -11,7 +11,7 @@
 @interface TEABarChart ()
 
 /**
- A mutable array of elements that will be made available to VoiceOver.
+ @discussion    A mutable array of elements that will be made available to VoiceOver.
  */
 @property (nonatomic, strong) NSMutableArray *accessibleElements;
 
@@ -131,7 +131,7 @@
     }
 }
 
-#pragma mark - Accessibility
+#pragma mark Accessibility
 
 -(BOOL)isAccessibilityElement
 {

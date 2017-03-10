@@ -13,7 +13,7 @@
 @interface TEAClockChart ()
 
 /**
- A mutable array of elements that will be made available to VoiceOver.
+ @discussion    A mutable array of elements that will be made available to VoiceOver.
  */
 @property (nonatomic, strong) NSMutableArray *accessibleElements;
 
@@ -118,9 +118,9 @@
     }
 }
 
-#pragma mark - Accessibility
+#pragma mark Accessibility
 
--(BOOL)isAccessibilityElement
+- (BOOL)isAccessibilityElement
 {
     return NO;
 }
@@ -130,12 +130,12 @@
     return self.data.count;
 }
 
--(id)accessibilityElementAtIndex:(NSInteger)index
+- (id)accessibilityElementAtIndex:(NSInteger)index
 {
     return self.accessibleElements[index];
 }
 
--(NSInteger)indexOfAccessibilityElement:(id)element
+- (NSInteger)indexOfAccessibilityElement:(id)element
 {
     return [self.accessibleElements indexOfObject:element];
 }
