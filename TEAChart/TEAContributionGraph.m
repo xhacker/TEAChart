@@ -228,7 +228,7 @@ static const NSInteger kDefaultGradeCount = 5;
     return self.accessibleElements[index];
 }
 
--(NSInteger)indexOfAccessibilityElement:(id)element
+- (NSInteger)indexOfAccessibilityElement:(id)element
 {
     return [self.accessibleElements indexOfObject:element];
 }

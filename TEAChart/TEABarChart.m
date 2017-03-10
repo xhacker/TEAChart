@@ -133,22 +133,22 @@
 
 #pragma mark Accessibility
 
--(BOOL)isAccessibilityElement
+- (BOOL)isAccessibilityElement
 {
     return NO;
 }
 
--(NSInteger)accessibilityElementCount
+- (NSInteger)accessibilityElementCount
 {
     return self.data.count;
 }
 
--(id)accessibilityElementAtIndex:(NSInteger)index
+- (id)accessibilityElementAtIndex:(NSInteger)index
 {
     return self.accessibleElements[index];
 }
 
--(NSInteger)indexOfAccessibilityElement:(id)element
+- (NSInteger)indexOfAccessibilityElement:(id)element
 {
     return [self.accessibleElements indexOfObject:element];
 }
