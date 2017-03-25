@@ -94,7 +94,6 @@
         
         // The accessibility elements MUST be added before filling the path.
         CGContextFillPath(context);
-
     }];
     
     // draw ring
