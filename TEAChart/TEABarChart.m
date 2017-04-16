@@ -8,6 +8,15 @@
 
 #import "TEABarChart.h"
 
+@interface TEABarChart ()
+
+/**
+ @discussion    A mutable array of elements that will be made available to VoiceOver.
+ */
+@property (nonatomic, strong) NSMutableArray *accessibleElements;
+
+@end
+
 @implementation TEABarChart
 
 - (id)initWithFrame:(CGRect)frame
@@ -31,6 +40,9 @@
 - (void)loadDefaults
 {
     self.opaque = NO;
+    
+    // Initialize an empty array which will be populated in -drawRect:
+    self.accessibleElements = [[NSMutableArray alloc] init];
 
     _xLabels = nil;
 
@@ -100,7 +112,45 @@
         [barColor setFill];
         CGRect barRect = CGRectMake(x, barMaxHeight - barHeight, barWidthRounded, barHeight);
         CGContextFillRect(context, barRect);
+        
+        // Populate self.accessibleElements with each bar's name and value.
+        UIAccessibilityElement *element = [[UIAccessibilityElement alloc] initWithAccessibilityContainer:self];
+        // The frame can be set to just rect, if it improves usability.
+        element.accessibilityFrame = [self convertRect:barRect toView:nil];
+        // If xLabels has not been initialized, give each bar a name to identify them in the accessibiltyLabel.
+        NSString *barLabel = self.xLabels[i] ? self.xLabels[i] : [NSString stringWithFormat: @"Bar %ld of %ld", i + 1, numberOfBars];
+        
+        // Combine eacb bar's title and value into the accessiblityLabel.
+        /* The label uses a percentage estimate, in case the value and max are too large, but if a use case
+         * requires count out of a total, substitute the following single-line comment.
+         */
+        // [NSString stringWithFormat:@"%@ : %@ out of %d", barLabel, self.data[i], (int)max];
+        double percentage = [(NSNumber *)(self.data[i]) doubleValue]/max;
+        element.accessibilityLabel = [NSString stringWithFormat:@"%@ : %.2f %%", barLabel, percentage * 100.0];
+        [self.accessibleElements addObject:element];
     }
+}
+
+#pragma mark Accessibility
+
+- (BOOL)isAccessibilityElement
+{
+    return NO;
+}
+
+- (NSInteger)accessibilityElementCount
+{
+    return self.data.count;
+}
+
+- (id)accessibilityElementAtIndex:(NSInteger)index
+{
+    return self.accessibleElements[index];
+}
+
+- (NSInteger)indexOfAccessibilityElement:(id)element
+{
+    return [self.accessibleElements indexOfObject:element];
 }
 
 #pragma mark Setters
