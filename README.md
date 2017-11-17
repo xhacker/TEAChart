@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/TEAChart.svg?style=flat)](https://github.com/xhacker/TEAChart/blob/master/LICENSE)
 [![Platform](https://img.shields.io/cocoapods/p/TEAChart.svg?style=flat)](http://cocoadocs.org/docsets/TEAChart/)
 
-Simple and intuitive iOS chart library, for [Pomotodo](https://itunes.apple.com/app/fan-jia-tu-dou/id866339080) app. **Contribution graph**, **clock chart**, and **bar chart**.
+Simple and intuitive iOS chart library, for [Pomotodo](https://pomotodo.com) app. **Contribution graph**, **clock chart**, and **bar chart**.
 
 Supports Storyboard and is fully accessible to VoiceOver users.
 
